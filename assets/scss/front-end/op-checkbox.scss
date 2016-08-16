@@ -136,6 +136,25 @@
             }
         }
     }
+    &.label-hidden {
+        label {
+            height: 0;
+            margin: 0;
+            display: block;
+            &::after {
+                left: 0;
+                bottom: 0;
+                visibility: visible;
+            }
+            &.nf-checked-label {
+                &::before {
+                    left: -2px;
+                    bottom: 0;
+                    visibility: visible;
+                }
+            }
+        }
+    }
 }
 .listcheckbox-container {
     .nf-field-label {

@@ -75,6 +75,7 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
 
                 $field = Ninja_Forms()->form($form_id)->field( $field_id )->get();
             } else {
+                unset( $settings[ 'id' ] );
                 $field = Ninja_Forms()->form($form_id)->field()->get();
             }
 
@@ -263,7 +264,7 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
         if( ! $has_save_action ) {
             $import[ 'actions' ][] = array(
                 'type' => 'save',
-                'label' => 'Save Form',
+                'label' => __( 'Save Form', 'ninja-forms' ),
                 'active' => TRUE
             );
         }
@@ -547,6 +548,35 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
 
         if( 'desc' == $field[ 'type' ] ){
             $field[ 'type' ] = 'html';
+        }
+
+        if( 'credit_card' == $field[ 'type' ] ){
+
+            $field[ 'type' ] = 'creditcardnumber';
+            $field[ 'label' ] = $field[ 'cc_number_label' ];
+            $field[ 'label_pos' ] = 'above';
+
+            if( $field[ 'help_text' ] ){
+                $field[ 'help_text' ] = '<p>' . $field[ 'help_text' ] . '</p>';
+            }
+
+            $credit_card_fields = array(
+                'creditcardcvc'        => $field[ 'cc_cvc_label' ],
+                'creditcardfullname'   => $field[ 'cc_name_label' ],
+                'creditcardexpiration' => $field[ 'cc_exp_month_label' ] . ' ' . $field[ 'cc_exp_year_label' ],
+                'creditcardzip'        => __( 'Credit Card Zip', 'ninja-forms' ),
+            );
+
+
+            foreach( $credit_card_fields as $new_type => $new_label ){
+                $field[ 'new_fields' ][] = array_merge( $field, array(
+                    'id' => '',
+                    'type' => $new_type,
+                    'label' => $new_label,
+                    'help_text' => '',
+                    'desc_text' => ''
+                ));
+            }
         }
 
         return apply_filters( 'ninja_forms_upgrade_field', $field );
