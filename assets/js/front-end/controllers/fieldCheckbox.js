@@ -1,6 +1,4 @@
 define([], function() {
-	var radioChannel = nfRadio.channel( 'checkbox' );
-
 	var controller = Marionette.Object.extend( {
 		initialize: function() {
 			/*
@@ -8,7 +6,8 @@ define([], function() {
 			 */
 			this.listenTo( nfRadio.channel( 'checkbox' ), 'init:model', this.registerRenderClasses );
 
-			radioChannel.reply( 'validate:required', this.validateRequired );
+			nfRadio.channel( 'checkbox' ).reply( 'validate:required', this.validateRequired );
+			nfRadio.channel( 'checkbox' ).reply( 'validate:modelData', this.validateModelData );
             nfRadio.channel( 'checkbox' ).reply( 'before:updateField', this.beforeUpdateField, this );
             nfRadio.channel( 'checkbox' ).reply( 'get:calcValue', this.getCalcValue, this );
 		},
@@ -30,6 +29,10 @@ define([], function() {
 
 		validateRequired: function( el, model ) {
 			return el[0].checked;
+		},
+
+		validateModelData: function( model ) {
+			return model.get( 'value' ) != 0;
 		},
 
 		getCalcValue: function( fieldModel ) {

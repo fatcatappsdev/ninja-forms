@@ -27,8 +27,8 @@ define([], function() {
         },
 
         renderOptions: function() {
-            var that = this;
             var html = '';
+
             if ( '' == this.value ) {
                 var valueFound = true;
             } else {
@@ -36,7 +36,7 @@ define([], function() {
             }
 
             _.each( this.options, function( option, index ) {
-                if ( option.value == that.value ) {
+                if ( option.value == this.value ) {
                     valueFound = true;
                 }
 
@@ -48,23 +48,23 @@ define([], function() {
                     option.visible = true;
                 }
 
-                option.fieldID = that.id;
-                option.classes = that.classes;
+                option.fieldID = this.id;
+                option.classes = this.classes;
                 option.index = index;
 
                 if( option.selected ){
-                    that.selected.push( option.value );
+                    option.isSelected = true;
+                } else {
+                    var testValues = _.map( this.value, function( value ) {
+                        return value.toString();
+                    } );               
+                    
+                    option.isSelected = ( -1 != testValues.indexOf( option.value.toString() ) );
                 }
 
-                var testValues = _.map( that.value, function( value ) {
-                    return value.toString();
-                } );
-
-                option.isSelected = ( -1 != testValues.indexOf( option.value.toString() ) );
-                
                 var template = Marionette.TemplateCache.get( '#nf-tmpl-field-listcheckbox-option' );
                 html += template( option );
-            } );
+            }, this );
 
             if ( 1 == this.show_other ) {
                 if ( 'nf-other' == this.value ) {
