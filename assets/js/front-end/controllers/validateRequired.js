@@ -61,14 +61,19 @@ define([], function() {
 			}
 
 			currentValue = model.get( 'value' );
-			
+
 			var defaultReqValidation = true;
 
 			if ( ! jQuery.trim( currentValue ) ) {
 				defaultReqValidation = false;
 			}
 
-			var valid = defaultReqValidation;
+			var customReqValidation = nfRadio.channel( model.get( 'type' ) ).request( 'validate:modelData', model );
+			if ( 'undefined' !== typeof customReqValidation ) {
+				var valid = customReqValidation;
+			} else {
+				var valid = defaultReqValidation;
+			}
 
 			this.maybeError( valid, model );
 

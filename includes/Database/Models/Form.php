@@ -468,6 +468,11 @@ final class NF_Database_Models_Form extends NF_Abstracts_Model
                 $field[ 'options' ] = $field[ 'list' ][ 'options' ];
                 unset( $field[ 'list' ][ 'options' ] );
             }
+
+            foreach( $field[ 'options' ] as &$option ){
+                if( isset( $option[ 'value' ] ) && $option[ 'value' ] ) continue;
+                $option[ 'value' ] = $option[ 'label' ];
+            }
         }
 
         // Convert `textbox` to other field types
