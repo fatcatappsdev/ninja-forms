@@ -211,7 +211,7 @@
     "image": "https://ninjaforms.com/wp-content/uploads/edd/2013/09/stripe.png",
     "content": "Use Stripe to accept payments using your Ninja Forms.",
     "link": "https://ninjaforms.com/extensions/stripe/?utm_medium=plugin&utm_source=plugin-addons-page&utm_campaign=Ninja+Forms+Addons+Page&utm_content=Stripe",
-    "plugin": "ninja-forms-stripe/stripe.php",
+    "plugin": "ninja-forms-stripe/ninja-forms-stripe.php",
     "docs": "http://docs.ninjaforms.com/customer/portal/articles/search?q=Stripe&utm_medium=plugin&utm_source=plugin-addons-page&utm_campaign=Ninja+Forms+Addons+Page&utm_content=Stripe+Docs",
     "version": "1.0.10"
   },
