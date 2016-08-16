@@ -27,7 +27,7 @@
 </script>
 
 <script id="nf-tmpl-sub-header-fields" type="text/template">
-    <a class="nf-master-control nf-open-drawer" title="Add New Field" data-drawerid="addField" href="#"><i class="fa fa-plus" data-drawerid="addField" aria-hidden="true"></i><span>Add new field</span></a>
+    <a class="nf-master-control nf-open-drawer" title="Add New Field" data-drawerid="addField" href="#"><i class="fa fa-plus" data-drawerid="addField" aria-hidden="true"></i><span data-drawerid="addField">Add new field</span></a>
 </script>
 
 <script id="nf-tmpl-sub-header-actions" type="text/template">

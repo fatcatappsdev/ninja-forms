@@ -87,9 +87,14 @@ define([], function() {
 			    data: data,
 			    cache: false,
 			   	success: function( data, textStatus, jqXHR ) {
-			   		var response = jQuery.parseJSON( data );
-			        nfRadio.channel( 'forms' ).trigger( 'submit:response', response, textStatus, jqXHR, formModel.get( 'id' ) );
-			    	nfRadio.channel( 'form-' + formModel.get( 'id' ) ).trigger( 'submit:response', response, textStatus, jqXHR )
+			   		try {
+				   		var response = jQuery.parseJSON( data );
+				        nfRadio.channel( 'forms' ).trigger( 'submit:response', response, textStatus, jqXHR, formModel.get( 'id' ) );
+				    	nfRadio.channel( 'form-' + formModel.get( 'id' ) ).trigger( 'submit:response', response, textStatus, jqXHR );
+			   		} catch( e ) {
+			   			console.log( 'Parse Error' );
+			   		}
+
 			    },
 			    error: function( jqXHR, textStatus, errorThrown ) {
 			        // Handle errors here
