@@ -6,6 +6,6 @@
 </script>
 
 <script id="nf-tmpl-field-listselect-option" type="text/template">
-	<% if ( ! visible ) { return ''; } %>
+	<# if ( ! visible ) { return ''; } #>
 	<option value="<%= value %>" <%= ( 1 == selected ) ? 'selected="selected"' : '' %> ><%= label %></option>
 </script>
