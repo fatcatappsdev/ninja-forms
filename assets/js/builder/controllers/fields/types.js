@@ -12,59 +12,22 @@
  * @since 3.0
  */
 define( [
-	'models/app/typeCollection',
-	'models/app/settingCollection',
-	'models/app/settingGroupCollection',
-	'models/fields/typeSectionCollection'
-	], function(
-	fieldTypeCollection,
-	settingCollection,
-	fieldTypeSettingGroupCollection,
-	fieldTypeSectionCollection
+		'models/app/typeCollection',
+		'models/fields/typeSectionCollection'
+	],
+	function(
+		TypeCollection,
+		SectionCollection
 	) {
 	var controller = Marionette.Object.extend( {
 		initialize: function() {
-			// Create our field type collection
-			this.collection = new fieldTypeCollection();
 			// Config for our settings sections
-			this.fieldTypeSections = new fieldTypeSectionCollection( fieldTypeSections );
+			this.sections = new SectionCollection( fieldTypeSections );
 
-			// Since we want to access the "this" context later, we assign it to that so it isn't overwritten
-			var that = this;
+			this.listenTo( nfRadio.channel( 'fields' ), 'init:typeModel', this.registerSection );
 
-			// Loop through the field type data variable and add it to the field type collection array
-			_.each( fieldTypeData, function ( type ) {
-				var settingGroups = new fieldTypeSettingGroupCollection();
-				// Loop through the settings groups within this field type and create an object to add to the groups collection.
-				_.each( type.settingGroups, function( group ) {
-					var groupTmp = {
-						label: group.label,
-						display: group.display,
-						settings: new settingCollection( group.settings ),
-					}
-					// Add the tmp object to our setting groups collection
-					settingGroups.add( groupTmp );
-				} );
-
-				// Add our field type to the appropriate drawer section.
-				if ( 'undefined' != typeof that.fieldTypeSections.get( type.section ) ) {
-					that.fieldTypeSections.get( type.section ).get( 'fieldTypes' ).push( type.id );
-				}
-
-				// Build an object for this type that we can add to our field type collection
-				var fieldType = {
-					id: type.id,
-					type: type.type,
-					nicename: type.nicename,
-                    icon: type.icon,
-					alias: type.alias,
-					parentType: type.parentType,
-					settingGroups: settingGroups,
-					settingDefaults: type.settingDefaults
-				}
-				// Add tmp object to our field type collection
-				that.collection.add( fieldType );
-			} );
+			// Create our field type collection
+			this.collection = new TypeCollection( fieldTypeData, { type: 'fields' } );
 
 			// Respond to requests to get field type, collection, settings, and sections
 			nfRadio.channel( 'fields' ).reply( 'get:type', this.getFieldType, this );
@@ -73,6 +36,12 @@ define( [
 			nfRadio.channel( 'fields' ).reply( 'get:savedFields', this.getSavedFields, this );
 			// Listen to clicks on field types
 			this.listenTo( nfRadio.channel( 'drawer' ), 'click:fieldType', this.addField );
+		},
+
+		registerSection: function( typeModel ) {
+			if ( 'fields' != typeModel.collection.type || ! typeModel.get( 'section' ) ) return;
+
+			this.sections.get( typeModel.get( 'section' ) ).get( 'fieldTypes' ).push( typeModel.get( 'id' ) );
 		},
 
 		/**
@@ -141,7 +110,7 @@ define( [
          * @return backbone.collection field type settings sections
          */
         getTypeSections: function() {
-            return this.fieldTypeSections;
+            return this.sections;
         },
 
         /**
@@ -151,7 +120,7 @@ define( [
          * @return backbone.collection
          */
         getSavedFields: function() {
-        	this.fieldTypeSections.get( 'saved' );
+        	this.sections.get( 'saved' );
         }
 	});
 

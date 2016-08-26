@@ -151,7 +151,15 @@ define( [
 					},
 
 					getSettingsTitleView: function( data ) {
-						return new fieldsSettingsTitleView( data );
+						/*
+						 * If we are dealing with a field model, return the fields settings view, otherwise, return the default.
+						 */
+						if ( 'fields' == data.model.get( 'objectDomain' ) ) {
+							return new fieldsSettingsTitleView( data );
+						} else {
+							return this.get( 'getDefaultSettingsTitleView' ).call( this, data );
+						}
+						
 					},
 
 					getGutterLeftView: function( data ) {

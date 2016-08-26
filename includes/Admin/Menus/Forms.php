@@ -295,7 +295,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
         ?>
         <script>
-            var fieldTypeData     = <?php echo wp_json_encode( $field_type_settings ); ?>;
+            var fieldTypeData     = <?php echo wp_json_encode( array_values( $field_type_settings ) ); ?>;
             var fieldSettings     = <?php echo wp_json_encode( array_values( $master_settings ) ); ?>;
             var fieldTypeSections = <?php echo wp_json_encode( $field_type_sections ); ?>;
             // console.log( fieldTypeData );
@@ -365,7 +365,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
         ?>
         <script>
-            var actionTypeData = <?php echo wp_json_encode( $action_type_settings ); ?>;
+            var actionTypeData = <?php echo wp_json_encode( array_values( $action_type_settings ) ); ?>;
             var actionSettings = <?php echo wp_json_encode( array_values( $master_settings_list ) ); ?>;
             // console.log( actionTypeData );
         </script>
@@ -402,7 +402,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         }
         ?>
         <script>
-        var formSettingTypeData = <?php echo wp_json_encode( $form_settings_types )?>;
+        var formSettingTypeData = <?php echo wp_json_encode( array_values( $form_settings_types ) )?>;
         var formSettings = <?php echo wp_json_encode( array_values( $master_settings ) )?>;
         </script>
         <?php
