@@ -20,7 +20,7 @@
 </script>
 
 <script id="tmpl-nf-product-dropdown-option" type="text/template">
-    <option value="{{{ data.value }}}" <# ( 1 == selected ) ? 'selected="selected"' : '' #>{{{ data.label }}}</option>
+    <option value="{{{ data.value }}}" <# ( 1 == data.selected ) ? 'selected="selected"' : '' #>{{{ data.label }}}</option>
 </script>
 
 <script id="tmpl-nf-product-quantity" type="text/template">

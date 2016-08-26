@@ -5,15 +5,15 @@
 </script>
 
 <script id='tmpl-nf-field-listradio-option' type='text/template'>
-    <# if ( ! visible ) { return '' } #>
+    <# if ( ! data.visible ) { return '' } #>
     <li>
-        <input type="radio" id="nf-field-{{{ data.fieldID }}}-{{{ data.index }}}" name="nf-field-{{{ data.fieldID }}}" class="{{{ data.classes }}} nf-element <# ( value == currentValue  || 1 == selected ) ? 'nf-checked' : '' #>" value="{{{ data.value }}}" <# ( value == currentValue  || 1 == selected ) ? 'checked="checked"' : '' #>> <label for="nf-field-{{{ data.fieldID }}}-{{{ data.index }}}" class="<# ( value == currentValue  || 1 == selected ) ? 'nf-checked-label' : '' #>">{{{ data.label }}}</label>
+        <input type="radio" id="nf-field-{{{ data.fieldID }}}-{{{ data.index }}}" name="nf-field-{{{ data.fieldID }}}" class="{{{ data.classes }}} nf-element <# ( data.value == data.currentValue  || 1 == selected ) ? 'nf-checked' : '' #>" value="{{{ data.value }}}" <# ( data.value == data.currentValue  || 1 == selected ) ? 'checked="checked"' : '' #>> <label for="nf-field-{{{ data.fieldID }}}-{{{ data.index }}}" class="<# ( data.value == data.currentValue  || 1 == selected ) ? 'nf-checked-label' : '' #>">{{{ data.label }}}</label>
     </li>
 </script>
 
 <script id='tmpl-nf-field-listradio-other' type='text/template'>
     <li>
-        <input type="radio" name="nf-field-{{{ data.fieldID }}}" class="{{{ data.classes }}} nf-element" value="nf-other" <# ( ! valueFound ) ? 'checked="checked"' : '' #>> <label>Other {{{ data.renderOtherText() }}}</label>
+        <input type="radio" name="nf-field-{{{ data.fieldID }}}" class="{{{ data.classes }}} nf-element" value="nf-other" <# ( ! data.valueFound ) ? 'checked="checked"' : '' #>> <label>Other {{{ data.renderOtherText() }}}</label>
     </li>
 </script>
 

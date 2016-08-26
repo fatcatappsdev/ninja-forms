@@ -223,7 +223,7 @@
     <# } #>
 
         <td>
-            <span class="dashicons dashicons-{{{ data.label.dashicon }}}"></span> <span class="nf-changes-item <# ( disabled ) ? 'disabled' : '' #>"></span>
+            <span class="dashicons dashicons-{{{ data.label.dashicon }}}"></span> <span class="nf-changes-item <# ( data.disabled ) ? 'disabled' : '' #>"></span>
         </td>
         <td>
             {{{ data.label.object }}}
@@ -239,7 +239,7 @@
                 <a href="#" title="Undo" class="undoSingle disabled" style="text-decoration:none;">
             <# } #>
 
-            <span class="dashicons dashicons-image-rotate <# ( disabled ) ? 'disabled' : '' #>"></span>
+            <span class="dashicons dashicons-image-rotate <# ( data.disabled ) ? 'disabled' : '' #>"></span>
 
             <# if ( ! disabled ) { #>
                 </a>
@@ -420,7 +420,7 @@
 
 <script id="tmpl-nf-edit-setting-number" type="text/template">
     <label for="{{{ data.name }}}">{{{ data.label }}} {{{ data.renderTooltip() }}}
-        <input type="number" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" placeholder="<# ( 'undefined' != typeof placeholder ) ? placeholder : '' #>" />
+        <input type="number" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" placeholder="<# ( 'undefined' != typeof data.placeholder ) ? data.placeholder : '' #>" />
     </label>
 </script>
 
@@ -563,7 +563,7 @@
         if ( 'undefined' != typeof columns.selected ) {
             #>
             <div>
-                <input type="checkbox" class="setting" class="nf-checkbox" <# ( 1 == selected ) ? 'checked="checked"' : '' #> value="1" data-id="selected">
+                <input type="checkbox" class="setting" class="nf-checkbox" <# ( 1 == data.selected ) ? 'checked="checked"' : '' #> value="1" data-id="selected">
             </div>
             <#
         }
