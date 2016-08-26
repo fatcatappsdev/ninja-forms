@@ -194,7 +194,7 @@ define( ['views/app/drawer/mergeTagsContent', 'views/app/drawer/settingError'], 
 	    			} else if ( 'undefined' == typeof this.value ) {
 	    				this.value = '';
 	    			}
-	    			var setting = Marionette.TemplateCache.get( '#tmpl-nf-edit-setting-' + this.type );
+	    			var setting = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-edit-setting-' + this.type );
 					return setting( this );
 				},
 

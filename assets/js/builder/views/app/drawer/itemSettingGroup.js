@@ -38,7 +38,7 @@ define( ['views/app/drawer/itemSettingCollection'], function( itemSettingCollect
 			return {
 				renderLabel: function() {
 					if ( '' != this.label ) {
-						var groupLabel = Marionette.TemplateCache.get( '#tmpl-nf-drawer-content-edit-setting-group-label' );
+						var groupLabel = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-drawer-content-edit-setting-group-label' );
 						return groupLabel( this );
 					} else {
 						return '';

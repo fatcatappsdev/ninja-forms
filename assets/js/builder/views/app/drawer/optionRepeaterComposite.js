@@ -94,7 +94,7 @@ define( ['views/app/drawer/optionRepeaterOption', 'views/app/drawer/optionRepeat
 				},
 
 	    		renderSetting: function() {
-	    			var setting = Marionette.TemplateCache.get( '#tmpl-nf-edit-setting-' + this.type );
+	    			var setting = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-edit-setting-' + this.type );
 					return setting( this );
 				},
 

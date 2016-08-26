@@ -42,9 +42,9 @@ define( [], function() {
 	    				this.publishWidth = '';
 	    			}
 	    			if ( nfRadio.channel( 'app' ).request( 'get:setting', 'loading' ) ) {
-	    				var template = Marionette.TemplateCache.get( '#tmpl-nf-add-header-publish-loading' );
+	    				var template = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-add-header-publish-loading' );
 	    			} else {
-	    				var template = Marionette.TemplateCache.get( '#tmpl-nf-app-header-publish-button' );
+	    				var template = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-app-header-publish-button' );
 	    			}
 	    			return template( this );
 	    		},
@@ -70,7 +70,7 @@ define( [], function() {
 	    		 */
 	    		maybeRenderCancel: function() {
 	    			if ( ! nfRadio.channel( 'app' ).request( 'get:setting', 'clean' ) ) {
-	    				var viewChanges = Marionette.TemplateCache.get( '#tmpl-nf-app-header-view-changes' );
+	    				var viewChanges = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-app-header-view-changes' );
 	    				return viewChanges( this );
 	    			} else {
 	    				return '';

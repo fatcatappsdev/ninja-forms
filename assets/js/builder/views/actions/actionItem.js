@@ -73,7 +73,7 @@ define( ['views/app/itemControls'], function( itemControlsView ) {
 					this.label = '';
 					this.value = this.active;
 					this.name = this.id + '-active';
-					var html = Marionette.TemplateCache.get( '#tmpl-nf-edit-setting-toggle' );
+					var html = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-edit-setting-toggle' );
 					html = html( this );
 					this.label = actionLabel;
 					return html;

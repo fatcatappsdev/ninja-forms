@@ -25,7 +25,7 @@ define( ['views/app/drawer/itemSettingGroupCollection'], function( itemSettingGr
 	    	return {
 	    		maybeRenderTitle: function() {
 	    			if ( 'undefined' !== typeof this.type ) {
-	    				var title = Marionette.TemplateCache.get( '#tmpl-nf-drawer-content-edit-settings-title' );
+	    				var title = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-drawer-content-edit-settings-title' );
 	    				return title( this );
 	    			} else {
 	    				return '';

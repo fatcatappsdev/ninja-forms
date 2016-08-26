@@ -168,8 +168,8 @@ define( [], function() {
 		linkButton: function( context ) {
 			var that = this;
 			var ui = jQuery.summernote.ui;
-			var linkButton = Marionette.TemplateCache.get( '#tmpl-nf-rte-link-button' );
-			var linkDropdown = Marionette.TemplateCache.get( '#tmpl-nf-rte-link-dropdown' );
+			var linkButton = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-rte-link-button' );
+			var linkDropdown = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-rte-link-dropdown' );
 			return ui.buttonGroup([
 				ui.button({
 	            className: 'dropdown-toggle',
@@ -197,7 +197,7 @@ define( [], function() {
 
 		mergeTags: function( context ) {
 			var ui = jQuery.summernote.ui;
-			var mergeTagsButton = Marionette.TemplateCache.get( '#tmpl-nf-rte-merge-tags-button' );
+			var mergeTagsButton = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-rte-merge-tags-button' );
 			return ui.button({
 				className: 'dropdown-toggle',
 				contents: mergeTagsButton({}),
@@ -208,7 +208,7 @@ define( [], function() {
 		mediaButton: function( context ) {
 			var that = this;
 			var ui = jQuery.summernote.ui;
-			var mediaButton = Marionette.TemplateCache.get( '#tmpl-nf-rte-media-button' );
+			var mediaButton = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-rte-media-button' );
 			return ui.button({
 	            className: 'dropdown-toggle',
 	            contents: mediaButton({}),
