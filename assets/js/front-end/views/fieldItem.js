@@ -66,12 +66,12 @@ define( [], function() {
 							return true;
 						}
 					} );
-					var template = Marionette.TemplateCache.get( '#tmpl-nf-field-' + tmpl );
+					var template = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-field-' + tmpl );
 					return template( this );
 				},
 
 				renderLabel: function() {
-					var template = Marionette.TemplateCache.get( '#tmpl-nf-field-label' );
+					var template = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-field-label' );
 					return template( this );
 				},
 

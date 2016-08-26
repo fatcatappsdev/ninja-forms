@@ -6,7 +6,7 @@ define(['models/fileCollection', 'views/fileCollection'], function( fileCollecti
 		},
 
 		renderFileInput: function() {
-			var template = Marionette.TemplateCache.get( '#tmpl-nf-field-file-input' );
+			var template = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-field-file-input' );
 			return template( this );
 		},
 

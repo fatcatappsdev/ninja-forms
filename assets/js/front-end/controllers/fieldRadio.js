@@ -64,7 +64,7 @@ define([], function() {
 				option.classes = that.classes;
 				option.currentValue = that.value;
 				option.index = index;
-				var template = Marionette.TemplateCache.get( '#tmpl-nf-field-listradio-option' );
+				var template = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-field-listradio-option' );
 				html += template( option );
 			} );
 
@@ -79,7 +79,7 @@ define([], function() {
 					renderOtherText: this.renderOtherText,
 					valueFound: valueFound
 				};
-				var template = Marionette.TemplateCache.get( '#tmpl-nf-field-listradio-other' );
+				var template = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-field-listradio-other' );
 				html += template( data );
 			}
 
@@ -96,7 +96,7 @@ define([], function() {
 					classes: this.classes,
 					currentValue: this.currentValue
 				};
-				var template = Marionette.TemplateCache.get( '#tmpl-nf-field-listradio-other-text' );
+				var template = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-field-listradio-other-text' );
 				return template( data );
 			}
 		},

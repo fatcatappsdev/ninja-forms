@@ -17,7 +17,7 @@ define([], function() {
         renderRatings: function() {
         	var html = '';
         	for (var i = this.default - 1; i >= 0; i--) {
-        		var template = Marionette.TemplateCache.get( '#tmpl-nf-field-starrating-star' );
+        		var template = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-field-starrating-star' );
                 var num = i + 1;
         		html += template( { id: this.id, classes: this.classes, num: num } );
         	}

@@ -5,6 +5,12 @@ jQuery( document ).ready( function( $ ) {
 			forms: {},
 			initialize: function( options ) {
 
+				var that = this;
+				Marionette.Renderer.render = function(template, data){
+					var template = that.template( template );
+					return template( data );
+				};
+
 				// Underscore one-liner for getting URL Parameters
 				this.urlParameters = _.object(_.compact(_.map(location.search.slice(1).split('&'), function(item) {  if (item) return item.split('='); })));
 
@@ -14,6 +20,8 @@ jQuery( document ).ready( function( $ ) {
 
 				var loadControllers = new LoadControllers();
 				nfRadio.channel( 'app' ).trigger( 'after:loadControllers' );
+
+				nfRadio.channel( 'app' ).reply( 'get:template', this.template );
 			},
 			
 			onStart: function() {
@@ -69,6 +77,15 @@ jQuery( document ).ready( function( $ ) {
 					    }
 					});
 				}
+			},
+
+			template: function( template ) {
+				return _.template( $( template ).html(),  {
+					evaluate:    /<#([\s\S]+?)#>/g,
+					interpolate: /\{\{\{([\s\S]+?)\}\}\}/g,
+					escape:      /\{\{([^\}]+?)\}\}(?!\})/g,
+					variable:    'data'
+				} );
 			}
 		});
 	
