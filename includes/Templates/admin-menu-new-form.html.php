@@ -23,7 +23,7 @@
 </script>
 
 <script id="nf-tmpl-header-form-title" type="text/template">
-    <h2>{{{ renderTitle() }}}</h2>
+    <h2>{{{ data.renderTitle() }}}</h2>
 </script>
 
 <script id="nf-tmpl-sub-header-fields" type="text/template">
@@ -52,20 +52,20 @@
 </script>
 
 <script id="nf-tmpl-app-header-action-button" type="text/template">
-    {{{ renderPublish() }}}
-    {{{ maybeRenderCancel() }}}
+    {{{ data.renderPublish() }}}
+    {{{ data.maybeRenderCancel() }}}
 </script>
 
 <script id="nf-tmpl-mobile-menu-button" type="text/template">
-    <a class="nf-button nf-mobile-menu" title="<?php _e( 'Expand Menu', 'ninja-forms' ); ?>" {{{ maybeDisabled() }}}" href="#"><span class="dashicons dashicons-editor-ul"></span></a>
+    <a class="nf-button nf-mobile-menu" title="<?php _e( 'Expand Menu', 'ninja-forms' ); ?>" {{{ data.maybeDisabled() }}}" href="#"><span class="dashicons dashicons-editor-ul"></span></a>
 </script>
 
 <script id="nf-tmpl-app-header-publish-button" type="text/template">
-    <a href="#" {{{ publishWidth }}} class="nf-button primary {{{ maybeDisabled() }}} publish" title="<?php _e( 'Publish', 'ninja-forms' ); ?>"><?php _e( 'PUBLISH', 'ninja-forms' ); ?></a>
+    <a href="#" {{{ data.publishWidth }}} class="nf-button primary {{{ data.maybeDisabled() }}} publish" title="<?php _e( 'Publish', 'ninja-forms' ); ?>"><?php _e( 'PUBLISH', 'ninja-forms' ); ?></a>
 </script>
 
 <script id="nf-tmpl-add-header-publish-loading" type="text/template">
-    <a href="#" {{{ publishWidth }}} class="nf-button primary {{{ maybeDisabled() }}} publish" title="<?php _e( 'Loading', 'ninja-forms' ); ?>">
+    <a href="#" {{{ data.publishWidth }}} class="nf-button primary {{{ data.maybeDisabled() }}} publish" title="<?php _e( 'Loading', 'ninja-forms' ); ?>">
         <div class="nf-loading">
             <ul>
                 <li></li>
@@ -143,13 +143,13 @@
 </script>
 
 <script id="nf-tmpl-main-content-field" type="text/template">
-    <div id="{{{ getFieldID() }}}" class="{{{ renderClasses() }}}" data-id="{{{ id }}}">{{{ renderIcon() }}}<span class="nf-field-label">{{{ label }}} {{{ renderRequired() }}}</span>
+    <div id="{{{ data.getFieldID() }}}" class="{{{ data.renderClasses() }}}" data-id="{{{ data.id }}}">{{{ data.renderIcon() }}}<span class="nf-field-label">{{{ data.label }}} {{{ data.renderRequired() }}}</span>
         <div class="nf-item-controls"></div>
     </div>
 </script>
 
 <script id="nf-tmpl-item-controls" type="text/template">
-    <div class="nf-item-edit nf-item-control"><a href="#" title="<?php _e( 'Edit', 'ninja-forms' ); ?>"><i class="nf-edit-settings fa fa-cog" aria-hidden="true"></i><!-- <span class="nf-item-editing">Editing {{{ objectType }}}</span> --></a></div>
+    <div class="nf-item-edit nf-item-control"><a href="#" title="<?php _e( 'Edit', 'ninja-forms' ); ?>"><i class="nf-edit-settings fa fa-cog" aria-hidden="true"></i><!-- <span class="nf-item-editing">Editing {{{ data.objectType }}}</span> --></a></div>
     <div class="nf-item-duplicate nf-item-control"><a href="#" title="<?php _e( 'Duplicate (^ + C + click)', 'ninja-forms' ); ?>"><i class="nf-duplicate fa fa-files-o" aria-hidden="true"></i></a></div>
     <div class="nf-item-delete nf-item-control"><a href="#" title="<?php _e( 'Delete (^ + D + click)', 'ninja-forms' ); ?>"><i class="nf-delete fa fa-trash" aria-hidden="true"></i></a></div>
 </script>
@@ -170,27 +170,27 @@
 </script>
 
 <script id="nf-tmpl-action-item" type="text/template">
-    <td>{{{ renderToggle() }}}</td>
-    <td>{{{ label }}}</td>
-    <td>{{{ renderTypeNicename() }}}</td>
+    <td>{{{ data.renderToggle() }}}</td>
+    <td>{{{ data.label }}}</td>
+    <td>{{{ data.renderTypeNicename() }}}</td>
     <td>
         <div class="nf-item-controls"></div>
     </td>
 </script>
 
 <script id="nf-tmpl-form-setting-type" type="text/template">
-    <div class="{{{ renderClasses() }}}"><span>{{{ nicename }}}</span></div>
+    <div class="{{{ data.renderClasses() }}}"><span>{{{ data.nicename }}}</span></div>
 </script>
 
 <script id="nf-tmpl-mobile-menu" type="text/template">
     <ul class="primary">
-        <li class="nf-publish {{{ maybeDisabled() }}}"><?php _e( 'Publish', 'ninja-forms' ); ?></li>
+        <li class="nf-publish {{{ data.maybeDisabled() }}}"><?php _e( 'Publish', 'ninja-forms' ); ?></li>
     </ul>
     <ul class="secondary"></ul>
 </script>
 
 <script id="nf-tmpl-mobile-menu-item" type="text/template">
-    <li><a href="{{{ renderUrl() }}}" title="{{{ nicename }}}" tabindex="-1" target="{{{ renderTarget() }}}" {{{ renderDisabled() }}} >{{{ renderDashicons() }}}{{{ nicename }}}</a></li>
+    <li><a href="{{{ data.renderUrl() }}}" title="{{{ data.nicename }}}" tabindex="-1" target="{{{ data.renderTarget() }}}" {{{ data.renderDisabled() }}} >{{{ data.renderDashicons() }}}{{{ data.nicename }}}</a></li>
 </script>
 
 <script id="nf-tmpl-drawer" type="text/template">
@@ -223,23 +223,23 @@
     <# } #>
 
         <td>
-            <span class="dashicons dashicons-{{{ label.dashicon }}}"></span> <span class="nf-changes-item {{{ ( disabled ) ? 'disabled' : '' }}}"></span>
+            <span class="dashicons dashicons-{{{ data.label.dashicon }}}"></span> <span class="nf-changes-item {{{ data.( disabled ) ? 'disabled' : '' }}}"></span>
         </td>
         <td>
-            {{{ label.object }}}
+            {{{ data.label.object }}}
         </td>
         <td>
-            {{{ label.label }}}
+            {{{ data.label.label }}}
         </td>
         <td>
-            {{{ label.change }}}
+            {{{ data.label.change }}}
         </td>
         <td>
             <# if ( ! disabled ) { #>
                 <a href="#" title="Undo" class="undoSingle disabled" style="text-decoration:none;">
             <# } #>
 
-            <span class="dashicons dashicons-image-rotate {{{ ( disabled ) ? 'disabled' : '' }}}"></span>
+            <span class="dashicons dashicons-image-rotate {{{ data.( disabled ) ? 'disabled' : '' }}}"></span>
 
             <# if ( ! disabled ) { #>
                 </a>
@@ -254,16 +254,16 @@
 </script>
 
 <script id="nf-tmpl-drawer-content-edit-settings-title-default" type="text/template">
-    <h2>{{{ renderTypeNicename() }}}</h2>
+    <h2>{{{ data.renderTypeNicename() }}}</h2>
 </script>
 
 <script id="nf-tmpl-drawer-content-edit-settings-title-fields" type="text/template">
-    <h2>{{{ renderSavedStar() }}} {{{ renderTypeNicename() }}}</h2>
+    <h2>{{{ data.renderSavedStar() }}} {{{ data.renderTypeNicename() }}}</h2>
     <span class="nf-add-saved-field" style="display:none"></span>
 </script>
 
 <script id="nf-tmpl-add-saved-field" type="text/template">
-    <input type="text" placeholder="Saved Field Name" value="{{{ label }}}">
+    <input type="text" placeholder="Saved Field Name" value="{{{ data.label }}}">
     <span class="add-button"></span>
 </script>
 
@@ -285,42 +285,42 @@
 
 <script id="nf-tmpl-drawer-content-edit-field-setting-group" type="text/template">
     <section class="nf-settings">
-        {{{ renderLabel() }}}
+        {{{ data.renderLabel() }}}
         <span class="nf-field-settings"></span>
     </section>
 </script>
 
 <script id="nf-tmpl-drawer-content-edit-setting-group-label" type="text/template">
-    <h3 class="toggle"><span class="dashicons dashicons-arrow-{{{ renderArrowDir() }}}"></span>{{{ label }}}</h3>
+    <h3 class="toggle"><span class="dashicons dashicons-arrow-{{{ data.renderArrowDir() }}}"></span>{{{ data.label }}}</h3>
 </script>
 
 <script id="nf-tmpl-drawer-staged-field" type="text/template">
-     <span class="nf-item-dock" id="{{{ id }}}" data-id="{{{ slug }}}"><span class="fa fa-{{{ icon }}}"></span>{{{ nicename }}}<span class="dashicons dashicons-dismiss"></span>
+     <span class="nf-item-dock" id="{{{ data.id }}}" data-id="{{{ data.slug }}}"><span class="fa fa-{{{ data.icon }}}"></span>{{{ data.nicename }}}<span class="dashicons dashicons-dismiss"></span>
 </script>
 
 <script id="nf-tmpl-drawer-field-type-section" type="text/template">
-    <section class="nf-settings {{{ classes }}}">
-        <h3>{{{ nicename }}}</h3>
-        {{{ renderFieldTypes() }}}
+    <section class="nf-settings {{{ data.classes }}}">
+        <h3>{{{ data.nicename }}}</h3>
+        {{{ data.renderFieldTypes() }}}
     </section>
 </script>
 
 <script id="nf-tmpl-drawer-field-type-button" type="text/template">
-    <div class="nf-field-type-button nf-field-type-draggable {{{ savedField() }}}" data-id="{{{ id }}}">
-        <div class="nf-item" data-id="{{{ id }}}" tabindex="0"><span class="fa fa-{{{ icon }}}"></span>{{{ nicename }}}</div>
+    <div class="nf-field-type-button nf-field-type-draggable {{{ data.savedField() }}}" data-id="{{{ data.id }}}">
+        <div class="nf-item" data-id="{{{ data.id }}}" tabindex="0"><span class="fa fa-{{{ data.icon }}}"></span>{{{ data.nicename }}}</div>
     </div>
 </script>
 
 <script id="nf-tmpl-drawer-action-type-section" type="text/template">
-    <section class="nf-settings nf-action-items {{{ renderClasses() }}}">
-        <h3>{{{ renderNicename() }}}</h3>
+    <section class="nf-settings nf-action-items {{{ data.renderClasses() }}}">
+        <h3>{{{ data.renderNicename() }}}</h3>
         <span class="action-types"></span>
     </section>
 </script>
 
 <script id="nf-tmpl-drawer-action-type-button" type="text/template">
-    <div class="nf-one-third nf-action-type-draggable" data-type="{{{ id }}}">
-        <div class="{{{ renderClasses() }}}" {{{ renderStyle() }}}>{{{ nicename }}}</div>
+    <div class="nf-one-third nf-action-type-draggable" data-type="{{{ data.id }}}">
+        <div class="{{{ data.renderClasses() }}}" {{{ data.renderStyle() }}}>{{{ data.nicename }}}</div>
     </div>
 </script>
 
@@ -329,13 +329,13 @@
         <div class="nf-search">
             <input type="search" class="nf-filter" value="" placeholder="Filter" tabindex="-1" />
         </div>
-        <a href="#" title="<?php _e( 'Done', 'ninja-forms' ); ?>" class="nf-button primary nf-close-drawer {{{ renderDisabled() }}}" tabindex="-1"><?php _e( 'Done', 'ninja-forms' ); ?></a>
+        <a href="#" title="<?php _e( 'Done', 'ninja-forms' ); ?>" class="nf-button primary nf-close-drawer {{{ data.renderDisabled() }}}" tabindex="-1"><?php _e( 'Done', 'ninja-forms' ); ?></a>
     </header>
 </script>
 
 <script id="nf-tmpl-drawer-header-edit-settings" type="text/template">
     <header class="nf-drawer-header">
-        <a href="#" title="<?php _e( 'Done', 'ninja-forms' ); ?>" class="nf-button primary nf-close-drawer {{{ renderDisabled() }}}" tabindex="-1"><?php _e( 'Done', 'ninja-forms' ); ?></a>
+        <a href="#" title="<?php _e( 'Done', 'ninja-forms' ); ?>" class="nf-button primary nf-close-drawer {{{ data.renderDisabled() }}}" tabindex="-1"><?php _e( 'Done', 'ninja-forms' ); ?></a>
     </header>
 </script>
 
@@ -364,12 +364,12 @@
 </script>
 
 <script id="nf-tmpl-app-menu-item" type="text/template">
-    <li><a href="{{{ renderUrl() }}}" title="{{{ nicename }}}" class="{{{ renderClasses() }}}" target="{{{ renderTarget() }}}" {{{ renderDisabled() }}}><span class="app-menu-text">{{{ nicename }}}</span>{{{ renderDashicons() }}}</a></li>
+    <li><a href="{{{ data.renderUrl() }}}" title="{{{ data.nicename }}}" class="{{{ data.renderClasses() }}}" target="{{{ data.renderTarget() }}}" {{{ data.renderDisabled() }}}><span class="app-menu-text">{{{ data.nicename }}}</span>{{{ data.renderDashicons() }}}</a></li>
 </script>
 
 <script id="nf-tmpl-staged-fields-drag" type="text/template">
     <div class="nf-staged-fields-drag">
-        <div id="drag-item-1" class="nf-staged-fields-drag-wrap">{{{ num }}}<? _e( ' Fields', 'ninja-forms' ); ?></div>
+        <div id="drag-item-1" class="nf-staged-fields-drag-wrap">{{{ data.num }}}<? _e( ' Fields', 'ninja-forms' ); ?></div>
         <div id="drag-item-2" class="nf-staged-fields-drag-wrap">&nbsp;</div>
         <div id="drag-item-3" class="nf-staged-fields-drag-wrap">&nbsp;</div>
     </div>
@@ -384,67 +384,67 @@
 </script>
 
 <script id="nf-tmpl-merge-tags-section" type="text/template">
-    <h4>{{{ label }}}</h4>
+    <h4>{{{ data.label }}}</h4>
     <ul class="merge-tags"></ul>
 </script>
 
 <script id="nf-tmpl-merge-tags-item" type="text/template">
-    <a href="#" title="{{{ label }}}" tabindex="1" class="{{{ renderClasses() }}}">{{{ label }}}</a>
+    <a href="#" title="{{{ data.label }}}" tabindex="1" class="{{{ data.renderClasses() }}}">{{{ data.label }}}</a>
 </script>
 
 <!-- Field Settings Templates -->
 
 <script id="nf-tmpl-edit-setting-wrap" type="text/template">
-    <div class="{{{ renderClasses() }}}" {{{ renderVisible() }}}>
-        {{{ renderSetting() }}}
+    <div class="{{{ data.renderClasses() }}}" {{{ data.renderVisible() }}}>
+        {{{ data.renderSetting() }}}
         <span class="nf-setting-error"></span>
     </div>
 </script>
 
 <script id="nf-tmpl-edit-setting-error" type="text/template">
-    <div>{{{ error }}}</div>
+    <div>{{{ data.error }}}</div>
 </script>
 
 <script id="nf-tmpl-edit-setting-textbox" type="text/template">
-    <label for="{{{ name }}}" class="{{{ renderLabelClasses() }}}">{{{ label }}} {{{ renderTooltip() }}}
-        <input type="text" class="setting" id="{{{ name }}}" value="{{{ value }}}" {{{ renderPlaceholder() }}} />
-        {{{ renderMergeTags() }}}
+    <label for="{{{ data.name }}}" class="{{{ data.renderLabelClasses() }}}">{{{ data.label }}} {{{ data.renderTooltip() }}}
+        <input type="text" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" {{{ data.renderPlaceholder() }}} />
+        {{{ data.renderMergeTags() }}}
     </label>
 </script>
 
 <script id="nf-tmpl-edit-setting-datepicker" type="text/template">
-    <label for="{{{ name }}}" class="{{{ renderLabelClasses() }}}">{{{ label }}} {{{ renderTooltip() }}}
-        <input type="text" class="setting" id="{{{ name }}}" value="{{{ value }}}" {{{ renderPlaceholder() }}} />
+    <label for="{{{ data.name }}}" class="{{{ data.renderLabelClasses() }}}">{{{ data.label }}} {{{ data.renderTooltip() }}}
+        <input type="text" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" {{{ data.renderPlaceholder() }}} />
     </label>
 </script>
 
 <script id="nf-tmpl-edit-setting-number" type="text/template">
-    <label for="{{{ name }}}">{{{ label }}} {{{ renderTooltip() }}}
-        <input type="number" class="setting" id="{{{ name }}}" value="{{{ value }}}" placeholder="{{{ ( 'undefined' != typeof placeholder ) ? placeholder : '' }}}" />
+    <label for="{{{ data.name }}}">{{{ data.label }}} {{{ data.renderTooltip() }}}
+        <input type="number" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" placeholder="{{{ data.( 'undefined' != typeof placeholder ) ? placeholder : '' }}}" />
     </label>
 </script>
 
 <script id="nf-tmpl-edit-setting-textarea" type="text/template">
-    <label for="{{{ name }}}" class="{{{ renderLabelClasses() }}}">{{{ label }}} {{{ renderTooltip() }}}
-        <textarea id="{{{ name }}}" class="setting">{{{ value }}}</textarea>
-        {{{ renderMergeTags() }}}
+    <label for="{{{ data.name }}}" class="{{{ data.renderLabelClasses() }}}">{{{ data.label }}} {{{ data.renderTooltip() }}}
+        <textarea id="{{{ data.name }}}" class="setting">{{{ data.value }}}</textarea>
+        {{{ data.renderMergeTags() }}}
     </label>
 </script>
 
 <script id="nf-tmpl-edit-setting-rte" type="text/template">
-    <label class="{{{ renderLabelClasses() }}}">{{{ label }}} {{{ renderTooltip() }}}</label>
-        <div id="{{{ name }}}" class="setting">{{{ value }}}</div>
-        {{{ renderMergeTags() }}}
+    <label class="{{{ data.renderLabelClasses() }}}">{{{ data.label }}} {{{ data.renderTooltip() }}}</label>
+        <div id="{{{ data.name }}}" class="setting">{{{ data.value }}}</div>
+        {{{ data.renderMergeTags() }}}
 
 </script>
 
 <script id="nf-tmpl-edit-setting-select" type="text/template">
-    <label for="{{{ name }}}" class="nf-select">{{{ label }}} {{{ renderTooltip() }}}
-        <select id="{{{ name }}}" class="setting">
+    <label for="{{{ data.name }}}" class="nf-select">{{{ data.label }}} {{{ data.renderTooltip() }}}
+        <select id="{{{ data.name }}}" class="setting">
             <%
             _.each( options, function( option ) {
                 }}}
-                <option value="{{{ option.value }}}" {{{ ( value == option.value ) ? 'selected="selected"' : '' }}}>{{{ option.label }}}</option>
+                <option value="{{{ data.option.value }}}" {{{ data.( value == option.value ) ? 'selected="selected"' : '' }}}>{{{ data.option.label }}}</option>
                 <%
             } );
             }}}
@@ -454,12 +454,12 @@
 </script>
 
 <script id="nf-tmpl-edit-setting-field-select" type="text/template">
-    <label for="{{{ name }}}" class="nf-select">{{{ label }}} {{{ renderTooltip() }}}
-        <select id="{{{ name }}}" class="setting">
+    <label for="{{{ data.name }}}" class="nf-select">{{{ data.label }}} {{{ data.renderTooltip() }}}
+        <select id="{{{ data.name }}}" class="setting">
             <%
             _.each( options, function( option ) {
             }}}
-            <option value="{{{ option.value }}}" {{{ ( value == option.value ) ? 'selected="selected"' : '' }}}>{{{ option.label }}}</option>
+            <option value="{{{ data.option.value }}}" {{{ data.( value == option.value ) ? 'selected="selected"' : '' }}}>{{{ data.option.label }}}</option>
             <%
             } );
             }}}
@@ -470,25 +470,25 @@
 
 <script id="nf-tmpl-edit-setting-checkbox" type="text/template">
 
-    <span class="nf-setting-label">{{{ label }}}</span> {{{ renderTooltip() }}}
-    <input type="checkbox" id="{{{ name }}}" class="nf-checkbox setting" {{{ ( 1 == value ) ? 'checked' : '' }}} />
-    <label for="{{{ name }}}">{{{ label }}}</label>
+    <span class="nf-setting-label">{{{ data.label }}}</span> {{{ data.renderTooltip() }}}
+    <input type="checkbox" id="{{{ data.name }}}" class="nf-checkbox setting" {{{ data.( 1 == value ) ? 'checked' : '' }}} />
+    <label for="{{{ data.name }}}">{{{ data.label }}}</label>
 
 </script>
 
 <script id="nf-tmpl-edit-setting-toggle" type="text/template">
 
-    <span class="nf-setting-label">{{{ label }}}{{{ renderTooltip() }}}</span>
-    <input type="checkbox" id="{{{ name }}}" class="nf-toggle setting" {{{ ( 1 == value ) ? 'checked' : '' }}} />
-    <label for="{{{ name }}}">{{{ label }}}</label>
+    <span class="nf-setting-label">{{{ data.label }}}{{{ data.renderTooltip() }}}</span>
+    <input type="checkbox" id="{{{ data.name }}}" class="nf-toggle setting" {{{ data.( 1 == value ) ? 'checked' : '' }}} />
+    <label for="{{{ data.name }}}">{{{ data.label }}}</label>
 
 </script>
 
 <script id="nf-tmpl-edit-setting-color" type="text/template">
 
-    <label for="{{{ name }}}" class="{{{ renderLabelClasses() }}}">{{{ label }}} {{{ renderTooltip() }}}</label>
+    <label for="{{{ data.name }}}" class="{{{ data.renderLabelClasses() }}}">{{{ data.label }}} {{{ data.renderTooltip() }}}</label>
 
-    <input type="text" id="{{{ name }}}" value="{{{ value }}}" class="setting" data-default-color="#F9F9F9" />
+    <input type="text" id="{{{ data.name }}}" value="{{{ data.value }}}" class="setting" data-default-color="#F9F9F9" />
 
     <div class="nf-colorpicker">
 
@@ -498,18 +498,18 @@
 
 <script id="nf-tmpl-edit-setting-fieldset" type="text/template">
     <fieldset>
-        <legend>{{{ label }}}</legend>
+        <legend>{{{ data.label }}}</legend>
         <span class="nf-field-sub-settings"></span>
     </fieldset>
 </script>
 
 <script id="nf-tmpl-edit-setting-option-repeater" type="text/template">
 
-    <fieldset class="nf-list-options {{{ renderFieldsetClasses() }}}" {{{ renderVisible() }}}>
-        <legend>{{{ label }}}</legend>
+    <fieldset class="nf-list-options {{{ data.renderFieldsetClasses() }}}" {{{ data.renderVisible() }}}>
+        <legend>{{{ data.label }}}</legend>
         <div class="nf-div-table">
             <div class="nf-table-row nf-table-header">
-                {{{ renderHeaders() }}}
+                {{{ data.renderHeaders() }}}
             </div>
 
             <div class="nf-list-options-tbody">
@@ -523,7 +523,7 @@
 </script>
 
 <script id="nf-tmpl-edit-setting-option-repeater-error" type="text/template">
-    {{{ errors[ Object.keys( errors )[0] ] }}}
+    {{{ data.errors[ Object.keys( errors )[0] ] }}}
 </script>
 
 <script id="nf-tmpl-edit-setting-option-repeater-default-row" type="text/template">
@@ -536,7 +536,7 @@
         if ( 'undefined' != typeof columns.label ) {
             }}}
              <div>
-                <input type="text" class="setting" value="{{{ label }}}" data-id="label">
+                <input type="text" class="setting" value="{{{ data.label }}}" data-id="label">
             </div>
             <%
         }
@@ -545,7 +545,7 @@
         if ( 'undefined' != typeof columns.value ) {
             }}}
              <div>
-                <input type="text" class="setting" value="{{{ value }}}" data-id="value">
+                <input type="text" class="setting" value="{{{ data.value }}}" data-id="value">
             </div>
             <%
         }
@@ -554,7 +554,7 @@
         if ( 'undefined' != typeof columns.calc ) {
             }}}
              <div>
-                <input type="text" class="setting" value="{{{ calc }}}" data-id="calc">
+                <input type="text" class="setting" value="{{{ data.calc }}}" data-id="calc">
             </div>
             <%
         }
@@ -563,7 +563,7 @@
         if ( 'undefined' != typeof columns.selected ) {
             }}}
             <div>
-                <input type="checkbox" class="setting" class="nf-checkbox" {{{ ( 1 == selected ) ? 'checked="checked"' : '' }}} value="1" data-id="selected">
+                <input type="checkbox" class="setting" class="nf-checkbox" {{{ data.( 1 == selected ) ? 'checked="checked"' : '' }}} value="1" data-id="selected">
             </div>
             <%
         }
@@ -576,7 +576,7 @@
 
 <script id="nf-tmpl-edit-setting-html" type="text/template">
     <div class="nf-note">
-        {{{ value }}}
+        {{{ data.value }}}
     </div>
 </script>
 
@@ -587,11 +587,11 @@
         <span class="dashicons dashicons-menu handle"></span>
     </div>
     <div>
-        <input type="text" class="setting" value="{{{ name }}}" data-id="name">
+        <input type="text" class="setting" value="{{{ data.name }}}" data-id="name">
         <span class="nf-option-error"></span>
     </div>
     <div>
-        <textarea class="setting" data-id="eq">{{{ eq }}}</textarea>
+        <textarea class="setting" data-id="eq">{{{ data.eq }}}</textarea>
         <span class="dashicons dashicons-list-view merge-tags"></span>
     </div>
     <div>
