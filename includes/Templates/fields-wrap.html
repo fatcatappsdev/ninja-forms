@@ -1,5 +1,5 @@
 <script id="nf-tmpl-field-wrap" type="text/template">
-	<div id="nf-field-<%= id %>-wrap" class="<%= renderWrapClass() %>" data-field-id="<%= id %>">
+	<div id="nf-field-{{{ id }}}-wrap" class="{{{ renderWrapClass() }}}" data-field-id="{{{ id }}}">
 		<%
 		/*
 		 * This is our main field template. It's called for every field type.
@@ -25,24 +25,24 @@
 		 *
 		 * is NOT ok because each of those items is on the top-level.
 		 */
-		%>
+		}}}
 		<%
 		/*
 		 * Render our label.
 		 */
-		%>
-		<%= renderLabel() %>
+		}}}
+		{{{ renderLabel() }}}
 		<%
 		/*
 		 * Render our field element. Uses the template for the field being rendered.
 		 */
-		%>
-		<div class="nf-field-element"><%= renderElement() %></div>
+		}}}
+		<div class="nf-field-element">{{{ renderElement() }}}</div>
 		<%
 		/*
 		 * Render our Description Text.
 		 */
-		%>
-		<%= renderDescText() %>
+		}}}
+		{{{ renderDescText() }}}
 	</div>
 </script>
