@@ -1,7 +1,7 @@
 define( [], function() {
     var view = Marionette.ItemView.extend({
         tagName: 'nf-section',
-        template: '#nf-tmpl-field-input-limit',
+        template: '#tmpl-nf-field-input-limit',
 
         initialize: function() {
         	this.listenTo( nfRadio.channel( 'field-' + this.model.get( 'id' ) ), 'keyup:field', this.updateCount );

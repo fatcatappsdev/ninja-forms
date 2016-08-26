@@ -10,7 +10,7 @@
  */
 define( ['views/actions/actionItem', 'views/actions/mainContentEmpty'], function( actionView, emptyView ) {
 	var view = Marionette.CompositeView.extend({
-		template: '#nf-tmpl-action-table',
+		template: '#tmpl-nf-action-table',
 		childView: actionView,
 		emptyView: emptyView,
 

@@ -1,6 +1,6 @@
 define( ['views/app/drawer/optionRepeaterOption', 'views/app/drawer/optionRepeaterEmpty', 'models/app/optionRepeaterCollection'], function( listOptionView, listEmptyView, listOptionCollection ) {
 	var view = Marionette.CompositeView.extend( {
-		template: '#nf-tmpl-edit-setting-wrap',
+		template: '#tmpl-nf-edit-setting-wrap',
 		childView: listOptionView,
 		emptyView: listEmptyView,
 		reorderOnSort: false,
@@ -94,7 +94,7 @@ define( ['views/app/drawer/optionRepeaterOption', 'views/app/drawer/optionRepeat
 				},
 
 	    		renderSetting: function() {
-	    			var setting = Marionette.TemplateCache.get( '#nf-tmpl-edit-setting-' + this.type );
+	    			var setting = Marionette.TemplateCache.get( '#tmpl-nf-edit-setting-' + this.type );
 					return setting( this );
 				},
 

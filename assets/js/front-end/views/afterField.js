@@ -1,7 +1,7 @@
 define( ['views/fieldErrorCollection', 'views/inputLimit'], function( fieldErrorCollection, InputLimitView ) {
     var view = Marionette.ItemView.extend({
         tagName: 'nf-section',
-        template: '#nf-tmpl-field-after',
+        template: '#tmpl-nf-field-after',
 
         initialize: function() {
     		this.model.on( 'change:errors', this.changeError, this );

@@ -9,7 +9,7 @@
 define( [], function() {
 	var view = Marionette.ItemView.extend({
 		tagName: 'div',
-		template: '#nf-tmpl-header-form-title',
+		template: '#tmpl-nf-header-form-title',
 
 		initialize: function() {
 			// When we change the model (to disable it, for example), re-render.

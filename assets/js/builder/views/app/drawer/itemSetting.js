@@ -1,7 +1,7 @@
 define( ['views/app/drawer/mergeTagsContent', 'views/app/drawer/settingError'], function( mergeTagsContentView, settingErrorView ) {
 	var view = Marionette.LayoutView.extend({
 		tagName: 'div',
-		template: '#nf-tmpl-edit-setting-wrap',
+		template: '#tmpl-nf-edit-setting-wrap',
 
 		regions: {
 			error: '.nf-setting-error'
@@ -194,7 +194,7 @@ define( ['views/app/drawer/mergeTagsContent', 'views/app/drawer/settingError'], 
 	    			} else if ( 'undefined' == typeof this.value ) {
 	    				this.value = '';
 	    			}
-	    			var setting = Marionette.TemplateCache.get( '#nf-tmpl-edit-setting-' + this.type );
+	    			var setting = Marionette.TemplateCache.get( '#tmpl-nf-edit-setting-' + this.type );
 					return setting( this );
 				},
 

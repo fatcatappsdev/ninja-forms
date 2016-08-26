@@ -1,7 +1,7 @@
 define( [], function() {
 	var view = Marionette.ItemView.extend({
 		tagName: 'div',
-		template: '#nf-tmpl-form-setting-type',
+		template: '#tmpl-nf-form-setting-type',
 
 		onBeforeDestroy: function() {
 			this.model.off( 'change:editActive', this.updateActiveClass );

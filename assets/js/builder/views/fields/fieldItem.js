@@ -1,7 +1,7 @@
 define( ['views/app/itemControls'], function( itemControlsView ) {
 	var view = Marionette.LayoutView.extend({
 		tagName: 'div',
-		template: '#nf-tmpl-main-content-field',
+		template: '#tmpl-nf-main-content-field',
 		doingShortcut: false,
 
 		regions: {

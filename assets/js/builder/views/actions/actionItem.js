@@ -11,7 +11,7 @@
 define( ['views/app/itemControls'], function( itemControlsView ) {
 	var view = Marionette.LayoutView.extend({
 		tagName: 'tr',
-		template: '#nf-tmpl-action-item',
+		template: '#tmpl-nf-action-item',
 		
 		regions: {
 			itemControls: '.nf-item-controls'
@@ -73,7 +73,7 @@ define( ['views/app/itemControls'], function( itemControlsView ) {
 					this.label = '';
 					this.value = this.active;
 					this.name = this.id + '-active';
-					var html = Marionette.TemplateCache.get( '#nf-tmpl-edit-setting-toggle' );
+					var html = Marionette.TemplateCache.get( '#tmpl-nf-edit-setting-toggle' );
 					html = html( this );
 					this.label = actionLabel;
 					return html;

@@ -108,8 +108,8 @@ define([], function() {
 		linkButton: function( context ) {
 			var that = this;
 			var ui = jQuery.summernote.ui;
-			var linkButton = Marionette.TemplateCache.get( '#nf-tmpl-rte-link-button' );
-			var linkDropdown = Marionette.TemplateCache.get( '#nf-tmpl-rte-link-dropdown' );
+			var linkButton = Marionette.TemplateCache.get( '#tmpl-nf-rte-link-button' );
+			var linkDropdown = Marionette.TemplateCache.get( '#tmpl-nf-rte-link-dropdown' );
 			return ui.buttonGroup([
 				ui.button({
 	            className: 'dropdown-toggle',
@@ -138,7 +138,7 @@ define([], function() {
 		mediaButton: function( context ) {
 			var that = this;
 			var ui = jQuery.summernote.ui;
-			var mediaButton = Marionette.TemplateCache.get( '#nf-tmpl-rte-media-button' );
+			var mediaButton = Marionette.TemplateCache.get( '#tmpl-nf-rte-media-button' );
 			return ui.button({
 	            className: 'dropdown-toggle',
 	            contents: mediaButton({}),

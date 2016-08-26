@@ -1,7 +1,7 @@
 define( ['views/beforeForm', 'views/formLayout', 'views/afterForm'], function( BeforeForm, FormLayout, AfterForm ) {
 
 	var view = Marionette.LayoutView.extend({
-		template: '#nf-tmpl-layout',
+		template: '#tmpl-nf-layout',
 
 		regions: {
 			responseMsg: '.nf-response-msg',

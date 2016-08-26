@@ -14,27 +14,27 @@ define([], function() {
         renderProduct: function(){
             switch( this.product_type ) {
                 case 'user':
-                    var template = Marionette.TemplateCache.get( '#nf-tmpl-field-textbox' );
+                    var template = Marionette.TemplateCache.get( '#tmpl-nf-field-textbox' );
                     return template( this );
                     break;
                 case 'hidden':
-                    var template = Marionette.TemplateCache.get( '#nf-tmpl-field-hidden' );
+                    var template = Marionette.TemplateCache.get( '#tmpl-nf-field-hidden' );
                     return template( this );
                     break;
 
                 case 'dropdown':
-                    var template = Marionette.TemplateCache.get( '#nf-tmpl-product-dropdown' );
+                    var template = Marionette.TemplateCache.get( '#tmpl-nf-product-dropdown' );
                     return template( this );
                     break;
                 default:
-                    var template = Marionette.TemplateCache.get( '#nf-tmpl-product-single' );
+                    var template = Marionette.TemplateCache.get( '#tmpl-nf-product-single' );
                     return template( this );
             }
         },
 
         renderProductQuantity: function(){
             if ( 1 == this.product_use_quantity ) {
-                var template = Marionette.TemplateCache.get( '#nf-tmpl-product-quantity' );
+                var template = Marionette.TemplateCache.get( '#tmpl-nf-product-quantity' );
                 return template( this );
             }
         },
@@ -54,7 +54,7 @@ define([], function() {
                 option.classes = that.classes;
                 option.currentValue = that.value;
 
-                var template = Marionette.TemplateCache.get( '#nf-tmpl-product-' + that.product_type + '-option' );
+                var template = Marionette.TemplateCache.get( '#tmpl-nf-product-' + that.product_type + '-option' );
                 html += template( option );
             } );
 

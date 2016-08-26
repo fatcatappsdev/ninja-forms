@@ -1,6 +1,6 @@
 define( ['views/app/drawer/itemSetting'], function( itemSettingView ) {
 	var view = Marionette.CompositeView.extend( {
-		template: '#nf-tmpl-edit-setting-wrap',
+		template: '#tmpl-nf-edit-setting-wrap',
 		childView: itemSettingView,
 
 		initialize: function( data ) {
@@ -54,7 +54,7 @@ define( ['views/app/drawer/itemSetting'], function( itemSettingView ) {
 	    			return '';
 	    		},
 	    		renderSetting: function(){
-	    			var setting = Marionette.TemplateCache.get( '#nf-tmpl-edit-setting-' + this.type );
+	    			var setting = Marionette.TemplateCache.get( '#tmpl-nf-edit-setting-' + this.type );
 					return setting( this );
 				},
 				

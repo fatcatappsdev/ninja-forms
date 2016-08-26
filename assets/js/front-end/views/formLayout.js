@@ -2,7 +2,7 @@ define( [ 'views/fieldCollection','views/afterFormContent', 'views/beforeFormCon
 
 	var view = Marionette.LayoutView.extend({
 		tagName: "nf-section",
-		template: "#nf-tmpl-form-layout",
+		template: "#tmpl-nf-form-layout",
 
 		regions: {
 			beforeFormContent: ".nf-before-form-content",

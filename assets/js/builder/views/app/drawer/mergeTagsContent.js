@@ -9,7 +9,7 @@
 define( ['views/app/drawer/mergeTagsSection', 'models/app/mergeTagCollection'], function( mergeTagsSectionView, MergeTagCollection ) {
 	var view = Marionette.CollectionView.extend({
 		tagName: 'div',
-		template: '#nf-tmpl-merge-tags-content',
+		template: '#tmpl-nf-merge-tags-content',
 		childView: mergeTagsSectionView,
 
 		initialize: function() {

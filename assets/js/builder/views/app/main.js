@@ -15,7 +15,7 @@ define( [], function() {
 
 	var view = Marionette.LayoutView.extend({
 		tagName: 'div',
-		template: '#nf-tmpl-main',
+		template: '#tmpl-nf-main',
 		className: 'nf-main-test',
 		maybeDone: false,
 

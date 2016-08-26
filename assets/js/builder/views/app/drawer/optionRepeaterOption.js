@@ -2,7 +2,7 @@ define( ['views/app/drawer/optionRepeaterError'], function( ErrorView ) {
 	var view = Marionette.LayoutView.extend({
 		tagName: 'div',
 		className: 'nf-table-row',
-		template: '#nf-tmpl-edit-setting-option-repeater-default-row',
+		template: '#tmpl-nf-edit-setting-option-repeater-default-row',
 		id: function() {
 			return this.model.cid;
 		},

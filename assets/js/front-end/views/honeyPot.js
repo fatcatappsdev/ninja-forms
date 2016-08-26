@@ -1,7 +1,7 @@
 define( [], function() {
     var view = Marionette.ItemView.extend({
         tagName: 'nf-section',
-        template: '#nf-tmpl-form-hp',
+        template: '#tmpl-nf-form-hp',
 
         events: {
         	'keyup .nf-field-hp': 'maybeError',

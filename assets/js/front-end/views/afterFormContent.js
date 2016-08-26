@@ -2,7 +2,7 @@ define( ['views/formErrorCollection', 'views/honeyPot'], function( FormErrors, H
 
     var view = Marionette.LayoutView.extend({
         tagName: "nf-section",
-        template: "#nf-tmpl-after-fields",
+        template: "#tmpl-nf-after-fields",
 
 		regions: {
 			errors: ".nf-form-errors",

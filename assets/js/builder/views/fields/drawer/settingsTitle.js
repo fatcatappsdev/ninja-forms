@@ -9,7 +9,7 @@
 define( ['views/fields/drawer/addSavedField'], function( addSavedFieldView ) {
 	var view = Marionette.LayoutView.extend({
 		tagName: 'div',
-		template: '#nf-tmpl-drawer-content-edit-settings-title-fields',
+		template: '#tmpl-nf-drawer-content-edit-settings-title-fields',
 
 		initialize: function() {
 			this.model.on( 'change:isSaved', this.render, this );

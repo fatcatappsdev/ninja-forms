@@ -1,7 +1,7 @@
 define( ['views/fields/drawer/stagingCollection', 'models/fields/stagingCollection', 'views/fields/drawer/typeSectionCollection'], function( drawerStagingView, StagingCollection, fieldTypeSectionCollectionView ) {
 
 	var view = Marionette.LayoutView.extend( {
-		template: '#nf-tmpl-drawer-content-add-field',
+		template: '#tmpl-nf-drawer-content-add-field',
 
 		regions: {
 			staging: '#nf-drawer-staging .nf-reservoir',

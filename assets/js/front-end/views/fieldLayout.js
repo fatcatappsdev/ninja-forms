@@ -2,7 +2,7 @@ define( ['views/fieldItem', 'views/beforeField', 'views/afterField'], function( 
 
     var view = Marionette.LayoutView.extend({
         tagName: "nf-field",
-        template: "#nf-tmpl-field-layout",
+        template: "#tmpl-nf-field-layout",
 
         regions: {
             beforeField: ".nf-before-field",
