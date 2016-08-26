@@ -223,7 +223,7 @@
     <# } #>
 
         <td>
-            <span class="dashicons dashicons-{{{ data.label.dashicon }}}"></span> <span class="nf-changes-item {{{ data.( disabled ) ? 'disabled' : '' }}}"></span>
+            <span class="dashicons dashicons-{{{ data.label.dashicon }}}"></span> <span class="nf-changes-item <# ( disabled ) ? 'disabled' : '' #>"></span>
         </td>
         <td>
             {{{ data.label.object }}}
@@ -239,7 +239,7 @@
                 <a href="#" title="Undo" class="undoSingle disabled" style="text-decoration:none;">
             <# } #>
 
-            <span class="dashicons dashicons-image-rotate {{{ data.( disabled ) ? 'disabled' : '' }}}"></span>
+            <span class="dashicons dashicons-image-rotate <# ( disabled ) ? 'disabled' : '' #>"></span>
 
             <# if ( ! disabled ) { #>
                 </a>
@@ -420,7 +420,7 @@
 
 <script id="tmpl-nf-edit-setting-number" type="text/template">
     <label for="{{{ data.name }}}">{{{ data.label }}} {{{ data.renderTooltip() }}}
-        <input type="number" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" placeholder="{{{ data.( 'undefined' != typeof placeholder ) ? placeholder : '' }}}" />
+        <input type="number" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" placeholder="<# ( 'undefined' != typeof placeholder ) ? placeholder : '' #>" />
     </label>
 </script>
 
@@ -441,13 +441,13 @@
 <script id="tmpl-nf-edit-setting-select" type="text/template">
     <label for="{{{ data.name }}}" class="nf-select">{{{ data.label }}} {{{ data.renderTooltip() }}}
         <select id="{{{ data.name }}}" class="setting">
-            <%
-            _.each( options, function( option ) {
-                }}}
-                <option value="{{{ data.option.value }}}" {{{ data.( value == option.value ) ? 'selected="selected"' : '' }}}>{{{ data.option.label }}}</option>
-                <%
+            <#
+            _.each( data.options, function( option ) {
+                #>
+                <option value="{{{ option.value }}}" <# ( data.value == option.value ) ? 'selected="selected"' : '' #>{{{ option.label }}}</option>
+                <#
             } );
-            }}}
+            #>
         </select>
         <div></div>
     </label>
@@ -456,11 +456,11 @@
 <script id="tmpl-nf-edit-setting-field-select" type="text/template">
     <label for="{{{ data.name }}}" class="nf-select">{{{ data.label }}} {{{ data.renderTooltip() }}}
         <select id="{{{ data.name }}}" class="setting">
-            <%
-            _.each( options, function( option ) {
-            }}}
-            <option value="{{{ data.option.value }}}" {{{ data.( value == option.value ) ? 'selected="selected"' : '' }}}>{{{ data.option.label }}}</option>
-            <%
+            <#
+            _.each( data.options, function( option ) {
+            #>
+            <option value="{{{ option.value }}}" <# ( data.value == option.value ) ? 'selected="selected"' : '' #>>{{{ option.label }}}</option>
+            #>
             } );
             }}}
         </select>
@@ -471,7 +471,7 @@
 <script id="tmpl-nf-edit-setting-checkbox" type="text/template">
 
     <span class="nf-setting-label">{{{ data.label }}}</span> {{{ data.renderTooltip() }}}
-    <input type="checkbox" id="{{{ data.name }}}" class="nf-checkbox setting" {{{ data.( 1 == value ) ? 'checked' : '' }}} />
+    <input type="checkbox" id="{{{ data.name }}}" class="nf-checkbox setting" <# ( 1 == data.value ) ? 'checked' : '' #> />
     <label for="{{{ data.name }}}">{{{ data.label }}}</label>
 
 </script>
@@ -479,7 +479,7 @@
 <script id="tmpl-nf-edit-setting-toggle" type="text/template">
 
     <span class="nf-setting-label">{{{ data.label }}}{{{ data.renderTooltip() }}}</span>
-    <input type="checkbox" id="{{{ data.name }}}" class="nf-toggle setting" {{{ data.( 1 == value ) ? 'checked' : '' }}} />
+    <input type="checkbox" id="{{{ data.name }}}" class="nf-toggle setting" <# ( 1 == data.value ) ? 'checked' : '' #> />
     <label for="{{{ data.name }}}">{{{ data.label }}}</label>
 
 </script>
@@ -530,44 +530,44 @@
     <div>
         <span class="dashicons dashicons-menu handle"></span>
     </div>
-    <%
+    <#
         var columns = getColumns();
 
         if ( 'undefined' != typeof columns.label ) {
-            }}}
+        #>
              <div>
                 <input type="text" class="setting" value="{{{ data.label }}}" data-id="label">
             </div>
-            <%
+            <#
         }
-    }}}
-    <%
+    #>
+    <#
         if ( 'undefined' != typeof columns.value ) {
-            }}}
+            #>
              <div>
                 <input type="text" class="setting" value="{{{ data.value }}}" data-id="value">
             </div>
-            <%
+            <#
         }
-    }}}
-    <%
+    #>
+    <#
         if ( 'undefined' != typeof columns.calc ) {
-            }}}
+        #>
              <div>
                 <input type="text" class="setting" value="{{{ data.calc }}}" data-id="calc">
             </div>
-            <%
+            <#
         }
-    }}}
-    <%
+    #>
+    <#
         if ( 'undefined' != typeof columns.selected ) {
-            }}}
+            #>
             <div>
-                <input type="checkbox" class="setting" class="nf-checkbox" {{{ data.( 1 == selected ) ? 'checked="checked"' : '' }}} value="1" data-id="selected">
+                <input type="checkbox" class="setting" class="nf-checkbox" <# ( 1 == selected ) ? 'checked="checked"' : '' #> value="1" data-id="selected">
             </div>
-            <%
+            <#
         }
-    }}}
+    #>
 
     <div>
         <span class="dashicons dashicons-dismiss nf-delete"></span>
