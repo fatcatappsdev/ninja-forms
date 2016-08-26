@@ -32,6 +32,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
     include 'deprecated/ninja-forms.php';
 
     register_activation_hook( __FILE__, 'ninja_forms_activation_deprecated' );
+
     function ninja_forms_activation_deprecated( $network_wide ){
         include_once 'deprecated/includes/activation.php';
 
@@ -287,6 +288,8 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
             add_action( 'admin_notices', array( self::$instance, 'admin_notices' ) );
 
             add_action( 'plugins_loaded', array( self::$instance, 'plugins_loaded' ) );
+
+            add_action( 'ninja_forms_rollback', array( self::$instance, 'create_tables_on_rollback' ) ) ;
 
             return self::$instance;
         }
@@ -553,6 +556,20 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
             $migrations->migrate();
         }
 
+        public function create_tables_on_rollback( $network_wide ){
+            global $wpdb;
+
+            $table_name = $wpdb->prefix . 'nf_objects';
+
+            if( $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s",  $table_name ) ) !== $table_name ) {
+
+                register_activation_hook( __FILE__, 'ninja_forms_activation_deprecated' );
+
+                include_once 'deprecated/includes/activation.php';
+
+                ninja_forms_activation( $network_wide );
+            }
+        }
     } // End Class Ninja_Forms
 
 
