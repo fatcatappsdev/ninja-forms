@@ -73,9 +73,12 @@ define( [
 			nfRadio.channel( 'form-' + this.get( 'id' ) ).reply( 'add:extra',    this.addExtra,    this );
 			nfRadio.channel( 'form-' + this.get( 'id' ) ).reply( 'remove:extra', this.removeExtra, this );
 		
+			// Respond to requests to get this model.
+			nfRadio.channel( 'form-' + this.get( 'id' ) ).reply( 'get:form', 	 this.getForm, 	   this );
+
 			nfRadio.channel( 'form' ).trigger( 'loaded', this );
 			nfRadio.channel( 'form' ).trigger( 'after:loaded', this );
-			nfRadio.channel( 'form-' + this.get( 'id' ) ).trigger( 'loaded', this );
+			nfRadio.channel( 'form-' + this.get( 'id' ) ).trigger( 'loaded', 	 this );
 		},
 
 		/*
@@ -130,6 +133,15 @@ define( [
 			delete extraData[ key ];
 			nfRadio.channel( 'form-' + this.get( 'id' ) ).trigger( 'remove:extra', this, key );
 		},
+
+		/*
+		 |--------------------------------------------------------------------------
+		 | Get this form
+		 |--------------------------------------------------------------------------
+		 */
+		getForm: function() {
+			return this;
+		}
 	} );
 
 	return model;

@@ -20,6 +20,7 @@ define(['models/formModel', 'models/formCollection', 'models/fieldCollection', '
 			this.collection = new FormCollection( nfForms );
 
 			nfRadio.channel( 'forms' ).trigger( 'loaded', this.collection );
+			nfRadio.channel( 'app' ).trigger( 'forms:loaded', this.collection );
 
 			nfRadio.channel( 'app' ).reply( 'get:form', this.getForm, this );
 			nfRadio.channel( 'app' ).reply( 'get:forms', this.getForms, this );
