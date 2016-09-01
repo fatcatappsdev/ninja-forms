@@ -418,7 +418,8 @@ final class NF_Display_Render
             wp_enqueue_script('nf-front-end--starrating', $js_dir . 'front-end--starrating.min.js', array('jquery'));
         }
 
-        wp_enqueue_script( 'nf-front-end',             $js_dir . 'front-end.min.js',             array( 'jquery', 'backbone' ) );
+        wp_enqueue_script( 'nf-front-end-deps',        $js_dir . 'front-end-deps.js',             array( 'jquery', 'backbone' ) );
+        wp_enqueue_script( 'nf-front-end',             $js_dir . 'front-end.js',                  array( 'nf-front-end-deps'  ) );
 
         wp_localize_script( 'nf-front-end', 'nfi18n', Ninja_Forms::config( 'i18nFrontEnd' ) );
 

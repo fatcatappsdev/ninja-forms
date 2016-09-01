@@ -28,6 +28,10 @@ define( [
 			this.set( 'fields', new FieldCollection( this.get( 'fields' ), { formModel: this } ) );
 			this.set( 'errors', new ErrorCollection() );
 
+			/*
+			 * Send out a radio message so that anyone who wants to filter our content data can register their filters.
+			 */
+			nfRadio.channel( 'form' ).trigger( 'before:filterData', this );
 
 			/*
 			 * Set our formContentData to our form setting 'formContentData'

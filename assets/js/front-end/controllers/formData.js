@@ -8,6 +8,7 @@
 define(['models/formModel', 'models/formCollection', 'models/fieldCollection', 'models/formErrorCollection'], function( FormModel, FormCollection, FieldCollection, ErrorCollection ) {
 	var controller = Marionette.Object.extend( {
 		initialize: function() {
+
 			/*
 			 * Setup our field collections.
 			 */
@@ -17,6 +18,8 @@ define(['models/formModel', 'models/formCollection', 'models/fieldCollection', '
 			 * Initialize our form collection (incase we have multiple forms on the page)
 			 */
 			this.collection = new FormCollection( nfForms );
+
+			nfRadio.channel( 'forms' ).trigger( 'loaded', this.collection );
 
 			nfRadio.channel( 'app' ).reply( 'get:form', this.getForm, this );
 			nfRadio.channel( 'app' ).reply( 'get:forms', this.getForms, this );

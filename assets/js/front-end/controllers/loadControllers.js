@@ -33,7 +33,8 @@ define(
 		'controllers/formContentFilters',
 		'controllers/loadViews',
 		'controllers/formErrors',
-		'controllers/submit'
+		'controllers/submit',
+		'controllers/defaultFilters'
 	],
 	function(
 		FormData,
@@ -69,7 +70,8 @@ define(
 		FormContentFilters,
 		LoadViews,
 		FormErrors,
-		Submit
+		Submit,
+		DefaultFilters
 	) {
 		var controller = Marionette.Object.extend( {
 			initialize: function() {
@@ -118,6 +120,8 @@ define(
 				
 				new CoreSubmitResponse();
 				new Calculations();
+
+				new DefaultFilters();
 
 				/**
 				 * Data controllers
