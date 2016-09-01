@@ -14,7 +14,6 @@ define(
 		'controllers/submitButton',
 		'controllers/submitDebug',
 		'controllers/getFormErrors',
-		'controllers/selectFile',
 		'controllers/validateRequired',
 		'controllers/submitError',
 		'controllers/actionRedirect',
@@ -51,7 +50,6 @@ define(
 		SubmitButton,
 		SubmitDebug,
 		GetFormErrors,
-		SelectFile,
 		ValidateRequired,
 		SubmitError,
 		ActionRedirect,
@@ -113,7 +111,6 @@ define(
 				new SubmitButton();
 				new SubmitDebug();
 				new GetFormErrors();
-				new SelectFile();
 				new ValidateRequired();
 				new SubmitError();
 				new ActionRedirect();

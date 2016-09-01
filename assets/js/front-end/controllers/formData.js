@@ -16,20 +16,7 @@ define(['models/formModel', 'models/formCollection', 'models/fieldCollection', '
 			/*
 			 * Initialize our form collection (incase we have multiple forms on the page)
 			 */
-			this.formCollection = new FormCollection();
-
-			_.each( nfForms, function( form, index ) {
-				var formModel = new FormModel( form );
-				that.formCollection.add( formModel );
-				var fields = new FieldCollection( form.fields, { formModel: formModel } );
-				formModel.set( 'fields', fields );
-				formModel.set( 'loadedFields', form.fields );
-				var errors = new ErrorCollection();
-				formModel.set( 'errors', errors );
-				nfRadio.channel( 'form' ).trigger( 'loaded', formModel );
-				nfRadio.channel( 'form' ).trigger( 'after:loaded', formModel );
-				nfRadio.channel( 'form-' + formModel.get( 'id' ) ).trigger( 'loaded', formModel );
-			} );
+			this.formCollection = new FormCollection( nfForms );
 
 			nfRadio.channel( 'app' ).reply( 'get:form', this.getForm, this );
 			nfRadio.channel( 'app' ).reply( 'get:forms', this.getForms, this );

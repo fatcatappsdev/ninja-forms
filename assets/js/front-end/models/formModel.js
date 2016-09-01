@@ -1,4 +1,10 @@
-define( [], function() {
+define( [
+	'models/fieldCollection',
+	'models/formErrorCollection'
+	], function(
+		FieldCollection,
+		ErrorCollection
+	) {
 	var model = Backbone.Model.extend({
 		defaults: {
 			beforeForm: '',
@@ -13,11 +19,14 @@ define( [], function() {
 		},
 
 		initialize: function() {
-
 			// Loop over settings and map to attributes
 			_.each( this.get( 'settings' ), function( value, setting ) {
 				this.set( setting, value );
 			}, this );
+
+			this.set( 'loadedFields', this.get( 'fields' ) );
+			this.set( 'fields', new FieldCollection( this.get( 'fields' ), { formModel: this } ) );
+			this.set( 'errors', new ErrorCollection() );
 
 			nfRadio.channel( 'forms' ).trigger( 'init:model', this );
 			nfRadio.channel( 'form-' + this.get( 'id' ) ).trigger( 'init:model', this );
@@ -33,6 +42,10 @@ define( [], function() {
 			nfRadio.channel( 'form-' + this.get( 'id' ) ).reply( 'get:extra',    this.getExtra,    this );
 			nfRadio.channel( 'form-' + this.get( 'id' ) ).reply( 'add:extra',    this.addExtra,    this );
 			nfRadio.channel( 'form-' + this.get( 'id' ) ).reply( 'remove:extra', this.removeExtra, this );
+		
+			nfRadio.channel( 'form' ).trigger( 'loaded', this );
+			nfRadio.channel( 'form' ).trigger( 'after:loaded', this );
+			nfRadio.channel( 'form-' + this.get( 'id' ) ).trigger( 'loaded', this );
 		},
 
 		/*
