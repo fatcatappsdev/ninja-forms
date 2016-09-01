@@ -16,7 +16,7 @@ define(['models/formModel', 'models/formCollection', 'models/fieldCollection', '
 			/*
 			 * Initialize our form collection (incase we have multiple forms on the page)
 			 */
-			this.formCollection = new FormCollection( nfForms );
+			this.collection = new FormCollection( nfForms );
 
 			nfRadio.channel( 'app' ).reply( 'get:form', this.getForm, this );
 			nfRadio.channel( 'app' ).reply( 'get:forms', this.getForms, this );
@@ -25,17 +25,17 @@ define(['models/formModel', 'models/formCollection', 'models/fieldCollection', '
 		},
 
 		getForm: function( id ) {
-			return this.formCollection.get( id );
+			return this.collection.get( id );
 		},
 
 		getForms: function() {
-			return this.formCollection;
+			return this.collection;
 		},
 
 		getField: function( id ) {
 			var model = false;
 			
-			_.each( this.formCollection.models, function( form ) {
+			_.each( this.collection.models, function( form ) {
 				if ( ! model ) {
 					model = form.get( 'fields' ).get( id );	
 				}			

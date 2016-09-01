@@ -41,14 +41,27 @@ define( [ 'views/fieldCollection','views/afterFormContent', 'views/beforeFormCon
 			 */
 			var formContentData = this.model.get( 'formContentData' );
 
-			/*
-			 * The formContentData variable used to be fieldContentsData.
-			 * If we don't have a 'formContentData' setting, check to see if we have an old 'fieldContentsData'.
-			 * 
-			 * TODO: This is for backwards compatibility and should be removed eventually. 
-			 */
-			if ( ! formContentData ) {
-				formContentData = this.model.get( 'fieldContentsData' );
+			if ( false === formContentData instanceof Backbone.Collection ) {
+				/*
+				 * The formContentData variable used to be fieldContentsData.
+				 * If we don't have a 'formContentData' setting, check to see if we have an old 'fieldContentsData'.
+				 * 
+				 * TODO: This is for backwards compatibility and should be removed eventually. 
+				 */
+				if ( ! formContentData ) {
+					formContentData = this.model.get( 'fieldContentsData' );
+				}
+				
+				var formContentLoadFilters = nfRadio.channel( 'formContent' ).request( 'get:loadFilters' );
+				/* 
+				* Get our first filter, this will be the one with the highest priority.
+				*/
+				var sortedArray = _.without( formContentLoadFilters, undefined );
+				var callback = _.first( sortedArray );
+				formContentData = callback( formContentData, this.model, this );
+				
+				this.model.set( 'formContentData', formContentData );
+
 			}
 			
 			/*
@@ -64,16 +77,6 @@ define( [ 'views/fieldCollection','views/afterFormContent', 'views/beforeFormCon
 			var callback = _.first( sortedArray );
 			formContentView = callback();
 			
-			var formContentLoadFilters = nfRadio.channel( 'formContent' ).request( 'get:loadFilters' );
-			/* 
-			* Get our first filter, this will be the one with the highest priority.
-			*/
-			var sortedArray = _.without( formContentLoadFilters, undefined );
-			var callback = _.first( sortedArray );
-			formContentData = callback( formContentData, this.model, this );
-			
-			this.model.set( 'formContentData', formContentData );
-
 			var options = {
 				data: formContentData,
 				formModel: this.model

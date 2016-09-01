@@ -28,6 +28,32 @@ define( [
 			this.set( 'fields', new FieldCollection( this.get( 'fields' ), { formModel: this } ) );
 			this.set( 'errors', new ErrorCollection() );
 
+
+			/*
+			 * Set our formContentData to our form setting 'formContentData'
+			 */
+			var formContentData = this.get( 'formContentData' );
+
+			/*
+			 * The formContentData variable used to be fieldContentsData.
+			 * If we don't have a 'formContentData' setting, check to see if we have an old 'fieldContentsData'.
+			 * 
+			 * TODO: This is for backwards compatibility and should be removed eventually. 
+			 */
+			if ( ! formContentData ) {
+				formContentData = this.get( 'fieldContentsData' );
+			}
+			
+			var formContentLoadFilters = nfRadio.channel( 'formContent' ).request( 'get:loadFilters' );
+			/* 
+			* Get our first filter, this will be the one with the highest priority.
+			*/
+			var sortedArray = _.without( formContentLoadFilters, undefined );
+			var callback = _.first( sortedArray );
+			formContentData = callback( formContentData, this, this );
+			
+			this.set( 'formContentData', formContentData );
+
 			nfRadio.channel( 'forms' ).trigger( 'init:model', this );
 			nfRadio.channel( 'form-' + this.get( 'id' ) ).trigger( 'init:model', this );
 
