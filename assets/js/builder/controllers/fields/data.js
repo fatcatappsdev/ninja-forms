@@ -66,13 +66,16 @@ define( ['models/fields/fieldCollection', 'models/fields/fieldModel'], function(
 		 * @param Object 	data 	field data to insert
 		 * @param bool 		silent 	prevent events from firing as a result of adding	 	
 		 */
-		addField: function( data, silent ) {
+		addField: function( data, silent, renderTrigger ) {
+			
 			/*
 			 * Set our fields 'adding' value to true. This enables our add field animation.
 			 */
 			nfRadio.channel( 'fields' ).request( 'set:adding', true );
 
 			silent = silent || false;
+			renderTrigger = ( 'undefined' == typeof renderTrigger ) ? true : renderTrigger;
+
 			if ( false === data instanceof Backbone.Model ) {
 				if ( 'undefined' == typeof ( data.id ) ) {
 					data.id = this.getTmpFieldID();
@@ -98,10 +101,10 @@ define( ['models/fields/fieldCollection', 'models/fields/fieldModel'], function(
 			
 			// Set our 'clean' status to false so that we get a notice to publish changes
 			nfRadio.channel( 'app' ).request( 'update:setting', 'clean', false );
-
-			// if ( ! silent ) {
-				nfRadio.channel( 'fields' ).trigger( 'add:field', model );
-			// }
+			nfRadio.channel( 'fields' ).trigger( 'add:field', model );
+			if ( renderTrigger ) {
+				nfRadio.channel( 'fields' ).trigger( 'render:newField', newModel );
+			}
 			
 			return model;
 		},

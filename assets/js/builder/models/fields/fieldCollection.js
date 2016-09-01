@@ -64,6 +64,10 @@ define( ['models/fields/fieldModel'], function( fieldModel ) {
 
 		removeFieldResponse: function( model ) {
 			this.remove( model );
+		},
+
+		fieldExists: function( fieldModel ) {
+			return -1 != this.indexOf( fieldModel );
 		}
 	} );
 	return collection;
