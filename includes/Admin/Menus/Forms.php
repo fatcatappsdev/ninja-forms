@@ -94,11 +94,12 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
         $form = json_decode( html_entity_decode( $form ), true );
 
-        if( json_last_error() ){
-            wp_die( json_last_error_msg() );
-        }
-
         $form_id = Ninja_Forms()->form()->import_form( $form );
+
+        if( ! $form_id ){
+            $error_message = ( function_exists( 'json_last_error_msg' ) && json_last_error_msg() ) ? json_last_error_msg() : __( 'Form Template Import Error.', 'ninja-forms' );
+            wp_die( $error_message );
+        }
 
         header( "Location: " . admin_url( "admin.php?page=ninja-forms&form_id=$form_id" ) );
         exit();
@@ -139,6 +140,10 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         wp_enqueue_script( 'jquery-mobile-events', Ninja_Forms::$url . 'assets/js/lib/jquery.mobile-events.min.js', array( 'jquery' ) );
         wp_enqueue_script( 'jquery-ui-touch-punch', Ninja_Forms::$url . 'assets/js/lib/jquery.ui.touch-punch.min.js', array( 'jquery' ) );
         wp_enqueue_script( 'jquery-classy-wiggle', Ninja_Forms::$url . 'assets/js/lib/jquery.classywiggle.min.js', array( 'jquery' ) );
+        wp_enqueue_script( 'moment-with-locale', Ninja_Forms::$url . 'assets/js/lib/moment-with-locales.min.js', array( 'jquery' ) );
+        wp_enqueue_script( 'modernizr', Ninja_Forms::$url . 'assets/js/lib/modernizr.min.js', array( 'jquery' ) );
+        wp_enqueue_script( 'pikaday', Ninja_Forms::$url . 'assets/js/lib/pikaday.min.js', array( 'moment-with-locale' ) );
+        wp_enqueue_script( 'pikaday-responsive', Ninja_Forms::$url . 'assets/js/lib/pikaday-responsive.min.js', array( 'pikaday', 'modernizr' ) );
 
         wp_enqueue_script( 'bootstrap', Ninja_Forms::$url . 'assets/js/lib/bootstrap.min.js', array( 'jquery' ) );
         wp_enqueue_script( 'codemirror', Ninja_Forms::$url . 'assets/js/lib/codemirror.min.js', array( 'jquery' ) );
@@ -153,10 +158,11 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         wp_localize_script( 'nf-builder', 'nfAdmin', array(
             'ajaxNonce'         => wp_create_nonce( 'ninja_forms_builder_nonce' ),
             'requireBaseUrl'    => Ninja_Forms::$url . 'assets/js/',
-            'previewurl'        => site_url() . '/?nf_preview_form=',
+            'previewurl'        => home_url() . '/?nf_preview_form=',
             'wp_locale'         => $wp_locale->number_format,
             'editFormText'      => __( 'Edit Form', 'ninja-forms' ),
-            'mobile'            => ( wp_is_mobile() ) ? 1: 0
+            'mobile'            => ( wp_is_mobile() ) ? 1: 0,
+            'dateFormat'        => Ninja_Forms()->get_setting( 'date_format' )
         ));
 
         do_action( 'nf_admin_enqueue_scripts' );
@@ -500,19 +506,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
     protected function _fetch_action_feed()
     {
-        $actions = get_transient( 'ninja-forms-builder-actions-feed' );
-
-        $bust = ( isset( $_GET[ 'nf-bust-actions-feed' ] ) );
-
-        if( $bust || ! $actions ) {
-            $actions = wp_remote_get('https://ninjaforms.com/?action_feed=true');
-            $actions = wp_remote_retrieve_body($actions);
-            $actions = json_decode($actions, true);
-
-            set_transient( 'ninja-forms-builder-actions-feed', $actions, WEEK_IN_SECONDS );
-        }
-
-        return $actions;
+        return Ninja_Forms::config( 'AvailableActions' );
     }
 
     protected function setting_group_priority( $a, $b )

@@ -40,6 +40,7 @@ define(
 		'controllers/app/confirmPublish',
 		'controllers/app/rte',
 		'controllers/app/settingFieldSelect',
+		'controllers/app/settingFieldList',
 		'controllers/app/settingHTML',
 		'controllers/app/settingColor',
 		'controllers/app/changeMenu',
@@ -134,6 +135,7 @@ define(
 		ConfirmPublish,
 		RTE,
 		SettingFieldSelect,
+		SettingFieldList,
 		SettingHTML,
 		SettingColor,
 		ChangeMenu,
@@ -220,6 +222,7 @@ define(
 				new ConfirmPublish();
 				new RTE();
 				new SettingFieldSelect();
+				new SettingFieldList();
 				new SettingHTML();
 				new SettingColor();
 				new ChangeMenu();

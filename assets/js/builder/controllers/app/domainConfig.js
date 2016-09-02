@@ -20,7 +20,6 @@ define( [
 	// Require our domain collection
 	'models/app/domainCollection',
 	// Require our fields domain files
-	'views/fields/mainHeader',
 	'views/fields/subHeader',
 	'views/fields/mainContentFieldCollection',
 	'views/fields/drawer/settingsTitle',
@@ -39,7 +38,6 @@ define( [
 	], 
 	function( 
 		appDomainCollection,
-		fieldsMainHeaderView,
 		fieldsSubHeaderView,
 		FieldsMainContentFieldCollectionView,
 		fieldsSettingsTitleView,
@@ -86,10 +84,6 @@ define( [
 						'Shift+return'		: 'return:mergeTags'
 					},
 					mobileDashicon: 'dashicons-menu',
-
-					getMainHeaderView: function() {
-						return new fieldsMainHeaderView();
-					},
 
 					getSubHeaderView: function() {
 						return new fieldsSubHeaderView();
@@ -212,10 +206,6 @@ define( [
 					},
 					mobileDashicon: 'dashicons-external',
 
-					getMainHeaderView: function() {
-						return new actionsMainHeaderView();
-					},
-
 					getSubHeaderView: function() {
 						return new actionsSubHeaderView();
 					},
@@ -238,10 +228,6 @@ define( [
 						'Shift+return'		: 'return:mergeTags'
 					},
 					mobileDashicon: 'dashicons-admin-generic',
-
-					getMainHeaderView: function() {
-						return new settingsMainHeaderView();
-					},
 
 					getSubHeaderView: function() {
 						return new settingsSubHeaderView();

@@ -37,6 +37,11 @@ define( [], function() {
 			this.listenTo( nfRadio.channel( 'drawer' ), 'opened', this.setBothGuttersFixed );
 			this.listenTo( nfRadio.channel( 'drawer' ), 'before:close', this.setBothGuttersAbsolute );
 			this.listenTo( nfRadio.channel( 'drawer' ), 'closed', this.setBothGuttersFixed );
+
+			/*
+			 * Reply to messages requesting that we resize our gutters.
+			 */
+			nfRadio.channel( 'app' ).reply( 'update:gutters', this.updateGutters, this );
 		},
 
 		onShow: function() {
@@ -98,7 +103,6 @@ define( [], function() {
 
 		resizeGutter: function( el, context ) {
 			var top = jQuery( el ).offset().top;
-			// var viewHeight = ( jQuery( window ).height() > jQuery( context.body.el ).height() ) ? jQuery( this.body.el ).height() : jQuery( window ).height(); 
 			var viewHeight = jQuery( window ).height();
 			var height = viewHeight - top;
 			jQuery( el ).height( height );
@@ -123,6 +127,10 @@ define( [], function() {
 			context = context || this;
 			jQuery( context.gutterLeft.el ).css( { position: 'absolute', left: 0, top: 0 } );
 			jQuery( context.gutterRight.el ).css( { position: 'absolute', top: 0, right: 0, left: 'auto' } );
+		},
+
+		updateGutters: function() {
+			this.resizeBothGutters();
 		}
 
 	});

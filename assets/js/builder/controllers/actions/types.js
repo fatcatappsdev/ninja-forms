@@ -24,7 +24,7 @@ define( [ 'models/app/typeCollection' ], function( TypeCollection ) {
 				),
 				{
 					slug: 'installed',
-					nicename: 'Installed'
+					nicename: nfi18n.installed
 				} 
 			);
 
@@ -35,7 +35,7 @@ define( [ 'models/app/typeCollection' ], function( TypeCollection ) {
 				),
 				{
 					slug: 'available',
-					nicename: 'Available'
+					nicename: nfi18n.available
 				}
 			);
 

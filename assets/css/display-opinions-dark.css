@@ -1023,6 +1023,9 @@ FIELD DESCRIPTION POSITIONS
 .checkbox-container.label-right label {
   margin: 0 0 0 30px;
   display: block; }
+  .checkbox-container.label-right label::before {
+    left: -30px;
+    bottom: 0; }
   .checkbox-container.label-right label::after {
     left: -28px;
     bottom: 0; }
@@ -1071,7 +1074,7 @@ FIELD DESCRIPTION POSITIONS
 
 .listradio-wrap .nf-field-element label {
   position: relative;
-  margin-left: 30px; }
+  margin-left: 30px !important; }
   .listradio-wrap .nf-field-element label::after {
     border-radius: 50%;
     content: "";
