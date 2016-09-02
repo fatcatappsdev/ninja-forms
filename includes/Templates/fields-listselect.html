@@ -7,5 +7,5 @@
 
 <script id="nf-tmpl-field-listselect-option" type="text/template">
 	<% if ( ! visible ) { return ''; } %>
-	<option value="<%= value %>" <%= ( 1 == selected ) ? 'selected="selected"' : '' %> ><%= label %></option>
+	<option value="<%= value %>" <%= ( selected ) ? 'selected="selected"' : '' %> ><%= label %></option>
 </script>
