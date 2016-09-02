@@ -20,6 +20,10 @@ define( [ 'views/app/drawer/defaultSettingsTitle', 'views/app/empty' ], function
 				return new DefaultSettingsTitleView( data );
 			},
 
+			getDefaultSettingsTitleView: function( data ) {
+				return new DefaultSettingsTitleView( data );
+			},
+
 			getGutterLeftView: function( data ) {
 				/*
 				 * Return empty view

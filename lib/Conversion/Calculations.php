@@ -47,6 +47,8 @@ final class NF_Conversion_Calculations implements NF_Conversion
         if( isset( $this->form[ 'settings' ][ 'calculations' ] ) ) {
             foreach ($this->form['fields'] as $field) {
 
+                if( ! isset( $field[ 'id' ] ) ) continue;
+
                 $search = 'field_' . $field['id'];
                 $replace = $this->merge_tag( $field );
 

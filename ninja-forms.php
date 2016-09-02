@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 2.9.56.2
+Version: 2.9.58
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -226,6 +226,8 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                  * Submission CPT
                  */
                 new NF_Admin_CPT_Submission();
+                new NF_Admin_CPT_DownloadAllSubmissions();
+                require_once Ninja_Forms::$dir . 'lib/StepProcessing/menu.php';
 
                 /*
                  * Logger
@@ -289,7 +291,18 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
 
             add_action( 'plugins_loaded', array( self::$instance, 'plugins_loaded' ) );
 
+            add_action( 'ninja_forms_available_actions', array( self::$instance, 'scrub_available_actions' ) );
+
             return self::$instance;
+        }
+
+        public function scrub_available_actions( $actions )
+        {
+            foreach( $actions as $key => $action ){
+                if ( ! is_plugin_active( $action[ 'plugin_path' ] ) )  continue;
+                unset( $actions[ $key ] );
+            }
+            return $actions;
         }
 
         public function admin_notices()

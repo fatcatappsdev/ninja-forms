@@ -29,7 +29,7 @@
 <script id="nf-tmpl-sub-header-fields" type="text/template">
     <a class="nf-master-control nf-open-drawer" title="<?php _e( 'Add new field', 'ninja-forms' ); ?>" href="#" data-drawerid="addField">
         <i class="fa fa-plus" data-drawerid="addField" aria-hidden="true"></i>
-        <span><?php _e( 'Add new field', 'ninja-forms' ); ?></span>
+        <span data-drawerid="addField"><?php _e( 'Add new field', 'ninja-forms' ); ?></span>
     </a>
 </script>
 
@@ -88,14 +88,6 @@
     </div>
 </script>
 
-<script id="nf-tmpl-main-header-fields" type="text/template">
-    <input class="nf-button secondary nf-change-domain" data-domain="actions" type="button" value="Edit Emails and Actions" />
-</script>
-
-<script id="nf-tmpl-main-header-actions" type="text/template">
-    <input class="nf-button secondary nf-change-domain" data-domain="settings" type="button" value="Manage Settings" />
-</script>
-
 <script id="nf-tmpl-main-header-settings" type="text/template">
 
 </script>
@@ -103,34 +95,28 @@
 <script id="nf-tmpl-main-content-fields-empty" type="text/template">
     <div class="nf-fields-empty">
         <h3><?php _e( 'Add form fields', 'ninja-forms' ); ?></h3>
-        <p><?php _e( 'Get started by adding your first form field.', 'ninja-forms' ); ?> <a class="nf-open-drawer" title="Add New Field" href="#" data-drawerid="addField"><?php _e( 'Just click here and select the fields you want.', 'ninja-forms' ); ?></a><?php _e( ' It’s that easy. Or...', 'ninja-forms' ); ?>
+        <p><?php _e( 'Get started by adding your first form field.', 'ninja-forms' ); ?> <a class="nf-open-drawer" title="<?php _e( 'Add New Field', 'ninja-forms' ); ?>" href="#" data-drawerid="addField"><?php _e( 'Just click here and select the fields you want.', 'ninja-forms' ); ?></a><?php _e( "It's that easy. Or...", 'ninja-forms' ); ?>
         <h3><?php _e( 'Start from a template', 'ninja-forms' ); ?></h3>
         <a href="?page=ninja-forms&form_id=formtemplate-contactform" class="nf-one-third template-box">
             <div class="template-box-inside">
-                <h4><?php _e( 'Contact Form', 'ninja-forms' ); ?></h4>
+                <h4><?php _e( 'Contact Us', 'ninja-forms' ); ?></h4>
                 <p class="template-desc"><?php _e( 'Allow your users to contact you with this simple contact form. You can add and remove fields as needed.', 'ninja-forms' ); ?></p>
             </div>
         </a>
+
         <a href="?page=ninja-forms&form_id=formtemplate-quoterequest" class="nf-one-third template-box">
             <div class="template-box-inside">
                 <h4><?php _e( 'Quote Request', 'ninja-forms' ); ?></h4>
-                <p class="template-desc"><?php _e( 'Start collecting leads with this pre-made Request a quote form. You can add and remove fields as needed.', 'ninja-forms' ); ?></p>
+                <p class="template-desc"><?php _e( 'Manage quote requests from your website easily with this remplate. You can add and remove fields as needed.', 'ninja-forms' ); ?></p>
             </div>
         </a>
-
-    <!--<a href="#" class="nf-one-third template-box">
+        <a href="?page=ninja-forms&form_id=formtemplate-eventregistration" class="nf-one-third template-box">
             <div class="template-box-inside">
-                <h4><?php _e( 'Donation Form', 'ninja-forms' ); ?></h4>
-                <p class="template-desc"><?php _e( 'Start collecting donation payments on your website with this ready-made Donation form. You can add and remove fields as needed.', 'ninja-forms' ); ?></p>
+                <h4><?php _e( 'Event Registration', 'ninja-forms' ); ?></h4>
+                <p class="template-desc"><?php _e( 'Allow user to register for your next event this easy to complete form. You can add and remove fields as needed.', 'ninja-forms' ); ?></p>
             </div>
         </a>
-        <a href="#" class="nf-one-third template-box">
-            <div class="template-box-inside">
-                <h4><?php _e( 'Billing / Order Form', 'ninja-forms' ); ?></h4>
-                <p class="template-desc"><?php _e( 'Collect payments for product and service orders with this ready-made form template. You can add and remove fields as needed.', 'ninja-forms' ); ?></p>
-            </div>
-        </a>
-        <a href="#" class="nf-one-third template-box">
+        <!--<a href="#" class="nf-one-third template-box">
             <div class="template-box-inside">
                 <h4><?php _e( 'Newsletter Sign Up Form', 'ninja-forms' ); ?></h4>
                 <p class="template-desc"><?php _e( 'Add subscribers and grow your email list with this newsletter signup form. You can add and remove fields as needed.', 'ninja-forms' ); ?></p>
@@ -143,7 +129,7 @@
     <tr>
         <td colspan="4">
             <h3><?php _e( 'Add form actions', 'ninja-forms' ); ?></h3>
-            <p><?php _e( 'Get started by adding your first form field. Just click the plus and select the actions you want. It’s that easy.', 'ninja-forms' ); ?></p>
+            <p><?php _e( "Get started by adding your first form field. Just click the plus and select the actions you want. It's that easy.", 'ninja-forms' ); ?></p>
         </td>
     </tr>
 </script>
@@ -242,7 +228,7 @@
         </td>
         <td>
             <% if ( ! disabled ) { %>
-                <a href="#" title="Undo" class="undoSingle disabled" style="text-decoration:none;">
+                <a href="#" title="<?php _e( 'Undo', 'ninja-forms' ); ?>" class="undoSingle disabled" style="text-decoration:none;">
             <% } %>
 
             <span class="dashicons dashicons-image-rotate <%= ( disabled ) ? 'disabled' : '' %>"></span>
@@ -326,7 +312,7 @@
 
 <script id="nf-tmpl-drawer-action-type-button" type="text/template">
     <div class="nf-one-third nf-action-type-draggable" data-type="<%= id %>">
-        <div class="<%= renderClasses() %>" <%= renderStyle() %>><%= nicename %></div>
+        <div class="<%= renderClasses() %>" title="<%= nicename %>" <%= renderStyle() %>"><%= nicename %></div>
     </div>
 </script>
 
@@ -472,6 +458,13 @@
         </select>
         <div></div>
     </label>
+</script>
+
+<script id="nf-tmpl-edit-setting-field-list" type="text/template">
+    <fieldset>
+        <legend><%= label %></legend>
+        <span class="nf-field-sub-settings"></span>
+    </fieldset>
 </script>
 
 <script id="nf-tmpl-edit-setting-checkbox" type="text/template">

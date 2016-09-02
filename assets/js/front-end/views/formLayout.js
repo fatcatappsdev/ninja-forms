@@ -15,11 +15,11 @@ define( [ 'views/fieldCollection','views/afterFormContent', 'views/beforeFormCon
 			/*
 			 * Set our default formContentView.
 			 */
-			nfRadio.channel( 'formContent' ).request( 'add:viewFilter', this.defaultformContentView, 10, this );
+			nfRadio.channel( 'formContent' ).request( 'add:viewFilter', this.defaultFormContentView, 10, this );
 			/*
 			 * Set our default formContent load filter
 			 */
-			nfRadio.channel( 'formContent' ).request( 'add:loadFilter', this.defaultformContentLoad, 10, this );
+			nfRadio.channel( 'formContent' ).request( 'add:loadFilter', this.defaultFormContentLoad, 10, this );
 			
 			/*
 			 * If we need to hide a form, set the visibility of this form to hidden.
@@ -108,21 +108,24 @@ define( [ 'views/fieldCollection','views/afterFormContent', 'views/beforeFormCon
             };
         },
 
-        defaultformContentView: function() {
+        defaultFormContentView: function() {
         	return fieldCollectionView;
         },
 
-        defaultformContentLoad: function( formContentData, formModel, context ) {
-        	if ( formContentData ) {
-	        	var fieldModels = _.map( formContentData, function( key ) {
-	        		return formModel.get( 'fields' ).findWhere( { key: key } );
-	        	}, this );
+        defaultFormContentLoad: function( formContentData, formModel, context ) {
+			var fieldCollection = nfRadio.channel( 'fields' ).request( 'get:collection' );
+			/*
+			 * If we only have one load filter, we can just return the field collection.
+			 */
+			var formContentLoadFilters = nfRadio.channel( 'formContent' ).request( 'get:loadFilters' );
+			var sortedArray = _.without( formContentLoadFilters, undefined );
+			if ( 1 == sortedArray.length || 'undefined' == typeof formContentData || true === formContentData instanceof Backbone.Collection ) return formModel.get( 'fields' );
 
-	        	return new FieldCollection( fieldModels );
-        	}
+        	var fieldModels = _.map( formContentData, function( key ) {
+        		return formModel.get( 'fields' ).findWhere( { key: key } );
+        	}, this );
 
-        	return formModel.get( 'fields' );
-
+        	return new FieldCollection( fieldModels );
         },
 
         hide: function() {

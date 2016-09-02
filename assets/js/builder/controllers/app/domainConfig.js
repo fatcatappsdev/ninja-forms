@@ -20,7 +20,6 @@ define( [
 	// Require our domain collection
 	'models/app/domainCollection',
 	// Require our fields domain files
-	'views/fields/mainHeader',
 	'views/fields/subHeader',
 	'views/fields/mainContentFieldCollection',
 	'views/fields/drawer/settingsTitle',
@@ -39,7 +38,6 @@ define( [
 	], 
 	function( 
 		appDomainCollection,
-		fieldsMainHeaderView,
 		fieldsSubHeaderView,
 		FieldsMainContentFieldCollectionView,
 		fieldsSettingsTitleView,
@@ -86,10 +84,6 @@ define( [
 						'Shift+return'		: 'return:mergeTags'
 					},
 					mobileDashicon: 'dashicons-menu',
-
-					getMainHeaderView: function() {
-						return new fieldsMainHeaderView();
-					},
 
 					getSubHeaderView: function() {
 						return new fieldsSubHeaderView();
@@ -151,7 +145,15 @@ define( [
 					},
 
 					getSettingsTitleView: function( data ) {
-						return new fieldsSettingsTitleView( data );
+						/*
+						 * If we are dealing with a field model, return the fields settings view, otherwise, return the default.
+						 */
+						if ( 'fields' == data.model.get( 'objectDomain' ) ) {
+							return new fieldsSettingsTitleView( data );
+						} else {
+							return this.get( 'getDefaultSettingsTitleView' ).call( this, data );
+						}
+						
 					},
 
 					getGutterLeftView: function( data ) {
@@ -204,10 +206,6 @@ define( [
 					},
 					mobileDashicon: 'dashicons-external',
 
-					getMainHeaderView: function() {
-						return new actionsMainHeaderView();
-					},
-
 					getSubHeaderView: function() {
 						return new actionsSubHeaderView();
 					},
@@ -230,10 +228,6 @@ define( [
 						'Shift+return'		: 'return:mergeTags'
 					},
 					mobileDashicon: 'dashicons-admin-generic',
-
-					getMainHeaderView: function() {
-						return new settingsMainHeaderView();
-					},
 
 					getSubHeaderView: function() {
 						return new settingsSubHeaderView();
@@ -280,8 +274,16 @@ define( [
 
 		defaultFormContentLoad: function( formContentData ) {
 			var fieldCollection = nfRadio.channel( 'fields' ).request( 'get:collection' );
-	
-			if ( 'undefined' == typeof formContentData || true === formContentData instanceof Backbone.Collection ) return fieldCollection;
+			/*
+			 * If we only have one load filter, we can just return the field collection.
+			 */
+			var formContentLoadFilters = nfRadio.channel( 'formContent' ).request( 'get:loadFilters' );
+			var sortedArray = _.without( formContentLoadFilters, undefined );
+			if ( 1 == sortedArray.length || 'undefined' == typeof formContentData || true === formContentData instanceof Backbone.Collection ) return fieldCollection;
+
+			/*
+			 * If another filter is registered, we are calling this from somewhere else.
+			 */
 
         	var fieldModels = _.map( formContentData, function( key ) {
         		return fieldCollection.findWhere( { key: key } );

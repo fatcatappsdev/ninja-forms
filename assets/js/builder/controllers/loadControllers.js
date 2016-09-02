@@ -40,6 +40,7 @@ define(
 		'controllers/app/confirmPublish',
 		'controllers/app/rte',
 		'controllers/app/settingFieldSelect',
+		'controllers/app/settingFieldList',
 		'controllers/app/settingHTML',
 		'controllers/app/settingColor',
 		'controllers/app/changeMenu',
@@ -51,6 +52,7 @@ define(
 		'controllers/app/cloneCollectionDeep',
 		'controllers/app/trackKeyDown',
 		'controllers/app/perfectScroll',
+		'controllers/app/getNewSettingGroupCollection',
 		/*
 		 * Fields domain controllers
 		 */
@@ -133,6 +135,7 @@ define(
 		ConfirmPublish,
 		RTE,
 		SettingFieldSelect,
+		SettingFieldList,
 		SettingHTML,
 		SettingColor,
 		ChangeMenu,
@@ -144,6 +147,7 @@ define(
 		CloneCollectionDeep,
 		TrackKeyDown,
 		PerfectScroll,
+		GetNewSettingGroupCollection,
 		/*
 		 * Fields domain controllers
 		 */
@@ -218,6 +222,7 @@ define(
 				new ConfirmPublish();
 				new RTE();
 				new SettingFieldSelect();
+				new SettingFieldList();
 				new SettingHTML();
 				new SettingColor();
 				new ChangeMenu();
@@ -228,6 +233,7 @@ define(
 				new CloneCollectionDeep();
 				new TrackKeyDown();
 				new PerfectScroll();
+				new GetNewSettingGroupCollection();
 				// new Pushstate();
 				/*
 				 * Fields domain controllers

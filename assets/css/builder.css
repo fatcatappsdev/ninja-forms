@@ -651,6 +651,7 @@ All styles used within the drawer
   display: inline-block;
   font-size: 17px;
   padding: 10px 30px;
+  text-align: center;
   text-decoration: none;
   text-transform: uppercase;
   -webkit-appearance: none;
