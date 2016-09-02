@@ -61,6 +61,8 @@ class NF_THREE_Submenu
         add_action( 'admin_menu', array( $this, 'register' ), $this->priority );
 
         add_action( 'wp_ajax_ninja_forms_upgrade_check', array( $this, 'upgrade_check' ) );
+
+        add_filter( 'nf_general_settings_advanced', array( $this, 'settings_upgrade_button' ) );
     }
 
     /**
@@ -134,6 +136,24 @@ class NF_THREE_Submenu
     {
         echo wp_json_encode( $response );
         wp_die(); // this is required to terminate immediately and return a proper response
+    }
+
+    public function settings_upgrade_button( $settings )
+    {
+        $settings[ 'update_to_three' ] = array(
+            'name'     => 'update_to_three',
+            'type'     => '',
+            'label'     => __( 'Ninja Forms THREE', 'ninja-forms' ),
+            'display_function' => array( $this, 'settings_upgrade_button_display' ),
+            'desc'     => __( 'You are eligible to upgrade to the Ninja Forms THREE.', 'ninja-forms' )
+        );
+
+        return $settings;
+    }
+
+    public function settings_upgrade_button_display()
+    {
+        include plugin_dir_path( __FILE__ ) . 'tmpl-settings-upgrade-button.html.php';
     }
 }
 
