@@ -7,7 +7,7 @@ class NF_THREE_Submenu
      *
      * @var string
      */
-    public $parent_slug = 'ninja-forms';
+    public $parent_slug = '';
 
     /**
      * (required) The text to be displayed in the title tags of the page when the menu is selected
@@ -53,8 +53,8 @@ class NF_THREE_Submenu
      */
     public function __construct()
     {
-        $this->menu_title = __( 'Upgrade', 'ninja-forms' );
-        $this->page_title = __( 'Upgrade to Ninja Forms THREE', 'ninja-forms' );
+        $this->menu_title = __( 'Update', 'ninja-forms' );
+        $this->page_title = __( 'Update to Ninja Forms THREE', 'ninja-forms' );
 
         $this->capability = apply_filters( 'submenu_' . $this->menu_slug . '_capability', $this->capability );
 
