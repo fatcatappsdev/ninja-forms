@@ -11,6 +11,14 @@ define( ['models/fieldModel'], function( fieldModel ) {
 			_.each( this.models, function( fieldModel ) {
 				nfRadio.channel( 'submit' ).trigger( 'validate:field', fieldModel );
 			}, this );
+		},
+
+		showFields: function() {
+			this.invoke( 'set', { visible: true } );
+		},
+
+		hideFields: function() {
+			this.invoke( 'set', { visible: false } );
 		}
 	} );
 	return collection;
