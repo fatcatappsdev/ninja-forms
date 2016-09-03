@@ -13,6 +13,11 @@ final class NF_Admin_Menus_SystemStatus extends NF_Abstracts_Submenu
         parent::__construct();
     }
 
+    public function get_page_title()
+    {
+        return __( 'Get Help', 'ninja-forms' );
+    }
+
     public function display()
     {
         /** @global wpdb $wpdb */

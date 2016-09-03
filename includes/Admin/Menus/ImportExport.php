@@ -19,6 +19,11 @@ final class NF_Admin_Menus_ImportExport extends NF_Abstracts_Submenu
         parent::__construct();
     }
 
+    public function get_page_title()
+    {
+        return __( 'Import / Export', 'ninja-forms' );
+    }
+
     public function import_form_listener()
     {
         if( ! current_user_can( apply_filters( 'ninja_forms_admin_import_form_capabilities', 'manage_options' ) ) ) return;
