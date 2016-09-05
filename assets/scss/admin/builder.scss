@@ -55,8 +55,6 @@ All styles used for displaying table content
 
 @import "media-queries";
 
-@import "rtl";
-
 #nf-app-admin-header {
     background: #EBEDEE;
     height: 60px;
@@ -130,3 +128,5 @@ body.fakescroll-grabbed{
     cursor     : -moz-grabbing;
     cursor     : -webkit-grabbing;
 }
+
+@import "rtl";

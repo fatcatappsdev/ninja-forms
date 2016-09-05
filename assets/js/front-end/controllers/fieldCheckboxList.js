@@ -52,7 +52,7 @@ define([], function() {
                 option.classes = this.classes;
                 option.index = index;
 
-                if( option.selected ){
+                if( option.selected && this.clean ){
                     option.isSelected = true;
                 } else {
                     var testValues = _.map( this.value, function( value ) {

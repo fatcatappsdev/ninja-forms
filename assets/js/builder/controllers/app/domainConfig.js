@@ -72,7 +72,7 @@ define( [
 			this.collection = new appDomainCollection( [
 				{
 					id: 'fields',
-					nicename: 'Form Fields',
+					nicename: nfi18n.domainFormFields,
 					hotkeys: {
 						'Esc'				: 'close:drawer',
 						'Ctrl+Shift+n'		: 'add:newField',
@@ -125,7 +125,7 @@ define( [
 						*/
 						var sortedArray = _.without( formContentLoadFilters, undefined );
 						var callback = _.first( sortedArray );
-						formContentData = callback( formContentData );
+						formContentData = callback( formContentData, nfRadio.channel( 'app' ).request( 'get:formModel' ), true );
 						
 						/*
 						 * Check our fieldContentViewsFilter to see if we have any defined.
@@ -193,7 +193,7 @@ define( [
 				},
 				{
 					id: 'actions',
-					nicename: 'Emails & Actions',
+					nicename: nfi18n.domainActions,
 					hotkeys: {
 						'Esc'				: 'close:drawer',
 						'Ctrl+Shift+n'		: 'add:newAction',
@@ -217,7 +217,7 @@ define( [
 				},
 				{
 					id: 'settings',
-					nicename: 'Advanced',
+					nicename: nfi18n.domainAdvanced,
 					hotkeys: {
 						'Esc'				: 'close:drawer',
 						'Ctrl+Shift+f'		: 'changeDomain:fields',

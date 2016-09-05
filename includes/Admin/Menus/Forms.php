@@ -20,6 +20,11 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         }
     }
 
+    public function get_page_title()
+    {
+        return __( 'Forms', 'ninja-forms' );
+    }
+
     public function admin_init()
     {
         if( isset( $_GET[ 'form_id' ] ) && ! is_numeric( $_GET[ 'form_id' ] ) && 'new' != $_GET[ 'form_id' ] ) {
@@ -192,10 +197,15 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
                 $type = $field->get_setting( 'type' );
 
-                if( ! isset( Ninja_Forms()->fields[ $type ] ) ) continue;
+                $field_id = $field->get_id();
+
+                if( ! isset( Ninja_Forms()->fields[ $type ] ) ){
+                    $field = NF_Fields_Unknown::create( $field );
+                }
 
                 $settings = $field->get_settings();
-                $settings['id'] = $field->get_id();
+                $settings[ 'id' ] =  $field_id;
+
 
                 foreach ($settings as $key => $setting) {
                     if (is_numeric($setting)) $settings[$key] = floatval($setting);

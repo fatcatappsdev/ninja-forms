@@ -21,7 +21,8 @@ final class NF_Display_Render
         'fields-label',
         'fields-error',
         'form-error',
-        'field-input-limit'
+        'field-input-limit',
+        'field-null'
     );
 
     protected static $use_test_values = FALSE;
@@ -83,9 +84,10 @@ final class NF_Display_Render
 
                 $field_type = $field->get_settings('type');
 
-                if( ! isset( Ninja_Forms()->fields[ $field_type ] ) ) continue;
-                if( ! apply_filters( 'ninja_forms_display_type_' . $field_type, TRUE ) ) continue;
-                if( ! apply_filters( 'ninja_forms_display_field', $field ) ) continue;
+                if( ! isset( Ninja_Forms()->fields[ $field_type ] ) ) {
+                    $field = NF_Fields_Unknown::create( $field );
+                    $field_type = $field->get_setting( 'type' );
+                }
 
                 $field = apply_filters('ninja_forms_localize_fields', $field);
                 $field = apply_filters('ninja_forms_localize_field_' . $field_type, $field);

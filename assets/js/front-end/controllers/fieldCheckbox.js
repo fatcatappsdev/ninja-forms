@@ -57,7 +57,7 @@ define([], function() {
 		},
 
 		customClasses: function( classes ) {
-			if ( 1 == this.value || ( 'undefined' != typeof this.default_value && 'checked' == this.default_value ) ) {
+			if ( 1 == this.value || ( this.clean && 'undefined' != typeof this.default_value && 'checked' == this.default_value ) ) {
 				classes += ' nf-checked';
 			} else {
 				classes.replace( 'nf-checked', '' );
@@ -66,7 +66,7 @@ define([], function() {
 		},
 
 		customLabelClasses: function( classes ) {
-			if ( 1 == this.value || ( 'undefined' != typeof this.default_value && 'checked' == this.default_value ) ) {
+			if ( 1 == this.value || ( this.clean && 'undefined' != typeof this.default_value && 'checked' == this.default_value ) ) {
 				classes += ' nf-checked-label';
 			} else {
 				classes.replace( 'nf-checked-label', '' );
@@ -75,7 +75,7 @@ define([], function() {
 		},
 
 		maybeChecked: function() {
-			if ( 1 == this.value || ( 'undefined' != typeof this.default_value && 'checked' == this.default_value ) ) {
+			if ( 1 == this.value || ( this.clean && 'undefined' != typeof this.default_value && 'checked' == this.default_value ) ) {
 				return ' checked';
 			} else {
 				return '';

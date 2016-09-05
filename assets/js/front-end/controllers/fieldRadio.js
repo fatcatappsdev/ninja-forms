@@ -39,7 +39,6 @@ define([], function() {
 		},
 
 		renderOptions: function() {
-			var that = this;
 			var html = '';
 			if ( '' == this.value ) {
 				var valueFound = true;
@@ -48,7 +47,7 @@ define([], function() {
 			}
 			
 			_.each( this.options, function( option, index ) {
-				if ( option.value == that.value ) {
+				if ( option.value == this.value ) {
 					valueFound = true;
 				}
 
@@ -60,13 +59,25 @@ define([], function() {
                     option.visible = true;
                 }
 
-				option.fieldID = that.id;
-				option.classes = that.classes;
-				option.currentValue = that.value;
+                option.selected = false;
+				option.fieldID = this.id;
+				option.classes = this.classes;
+				option.currentValue = this.value;
 				option.index = index;
+
+				/*
+				 * TODO: Is this still needed? Found in a merge conflict.
+				 */
+				if ( this.clean && 1 == this.selected ) {
+					option.selected = true;
+				} else if ( this.value == option.value ) {
+					option.selected = true;
+				}
+
 				var template = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-field-listradio-option' );
+
 				html += template( option );
-			} );
+			}, this );
 
 			if ( 1 == this.show_other ) {
 				if ( 'nf-other' == this.value ) {

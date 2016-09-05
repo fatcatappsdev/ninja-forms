@@ -126,6 +126,16 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 * Fixed a bug with a PHP notice when sanitizing the textarea field.
 * [THREE Only] Fixed a bug with plain text email containing raw HTML.
 
+= 2.9.56.2 (17 August 2016) =
+
+*Changes:*
+
+* Updated add-on list for THREE compatibility checks.
+
+*Bugs:*
+
+* Fixed a bug with admin styling after WordPress update.
+
 = 2.9.56.1 (17 August 2016) =
 
 *Bugs:*
@@ -152,6 +162,18 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 * Fixed a bug with importing forms and associated field IDs.
 * Fixed a bug with textarea encoding in submissions. [credit clifgriffin]
 * Fixed a bug with un-serializing form data on install. [credit todeveni]
+
+= 2.9.55.2 (11 August 2016) =
+
+*Bugs:*
+
+* Fixed a bug with unprepared raw SQL.
+
+= 2.9.55.1 (02 August 2016) =
+
+*Bugs:*
+
+* Fixed a bug with unprepared raw SQL.
 
 = 2.9.55 (02 August 2016) =
 

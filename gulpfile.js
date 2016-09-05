@@ -20,6 +20,7 @@ var sourcemaps        = require('gulp-sourcemaps');
 var autoprefixer      = require('gulp-autoprefixer');
 var autoprefixer      = require('autoprefixer');
 var requirejsOptimize = require('gulp-requirejs-optimize');
+var gettext           = require('gulp-gettext');
 
 function getPostCssProcessors() {
     return [
@@ -153,6 +154,12 @@ gulp.task('css:display-opinions-dark', function(){
     .pipe(postcss(getPostCssProcessors()))
     .pipe(sourcemaps.write('/'))
     .pipe(gulp.dest('assets/css'));
+});
+
+gulp.task('gettext', function() {
+    gulp.src('lang/*.po')
+    .pipe(gettext())
+    .pipe(gulp.dest('lang'))
 });
 
 // Watch Files For Changes
